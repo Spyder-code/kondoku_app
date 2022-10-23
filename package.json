@@ -26,6 +26,8 @@
     "@capacitor/cli": "^4.4.0",
     "@capacitor/core": "^4.4.0",
     "@capacitor/ios": "^4.4.0",
+    "@popperjs/core": "^2.11.6",
+    "bootstrap-icons": "^1.9.1",
     "swiper": "^8.4.4"
   }
 }

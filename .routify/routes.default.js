@@ -17,6 +17,22 @@ export default {
   "children": [
     {
       "meta": {},
+      "id": "_default_detail_svelte",
+      "_regex": {},
+      "_paramKeys": {},
+      "name": "detail",
+      "file": {
+        "path": "src/routes/detail.svelte",
+        "dir": "src/routes",
+        "base": "detail.svelte",
+        "ext": ".svelte",
+        "name": "detail"
+      },
+      "asyncModule": () => import('../src/routes/detail.svelte'),
+      "children": []
+    },
+    {
+      "meta": {},
       "id": "_default_index_svelte",
       "_regex": {},
       "_paramKeys": {},
