@@ -1066,6 +1066,37 @@ textarea:focus,
   height: auto;
 }
 
+.product-card-medium {
+  width: 190px;
+  height: auto;
+}
+
+.product-card-medium .product-image-medium {
+  border-radius: 15px;
+  overflow: hidden;
+  height: 150px;
+  width: 100%;
+  display: block;
+  position: relative;
+}
+
+.product-card-medium .product-image-medium .tag-images-count {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  z-index: 1;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+}
+
+.product-card-medium .product-image-medium .small-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 1;
+}
+
 .product-card-large .product-image-large {
   border-radius: 15px;
   overflow: hidden;

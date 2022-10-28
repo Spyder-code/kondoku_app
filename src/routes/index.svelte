@@ -3,32 +3,11 @@
     import UnitSliderTwo from '../component/UnitSliderTwo.svelte';
     import BottomMenu from '../component/BottomMenu.svelte';
     import UnitList from '../component/UnitList.svelte';
+    import Header from '../component/Header.svelte';
 </script>
 
 <main class="flex-shrink-0">
-    <!-- Fixed navbar -->
-    <header class="header">
-        <div class="row">
-            <div class="col-auto px-0">
-                <button class="menu-btn btn btn-link-default ml-3 mt-2" type="button">
-                    <i class="bi bi-heart" style="font-size: 1.5rem; color:rgb(244, 66, 66);"><span style="font-size: 1rem;">13</span></i>
-                </button>
-            </div>
-            <div class="text-center col">
-                <a class="navbar-brand" href="/detail">
-                    <img src="img/logo/kondoku1.png" alt="KONDOKU" style="height: 60px;">
-                    <!-- <h4>KONDOKU</h4> -->
-                </a>
-            </div>
-            <div class="ml-auto col-auto">
-                <a href="profile.html" class="icon icon-44 shadow-sm">
-                    <figure class="m-0 background">
-                        <img src="img/user-1.jpg" alt="">
-                    </figure>
-                </a>
-            </div>
-        </div>
-    </header>
+    <Header/>
 
     <!-- page content start -->
     <div class="container mt-4">
@@ -38,19 +17,8 @@
                     <input type="text" class="form-control search" placeholder="Search Property">
                 </div>
                 <div class="col-auto pl-0">
-                    <button class="sqaure-btn btn btn-info text-white filter-btn" type="button">
-                        <svg xmlns='http://www.w3.org/2000/svg' class="icon-size-24" viewBox='0 0 512 512'>
-                            <title>kondoku-icon</title>
-                            <line x1='368' y1='128' x2='448' y2='128' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px' />
-                            <line x1='64' y1='128' x2='304' y2='128' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px' />
-                            <line x1='368' y1='384' x2='448' y2='384' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px' />
-                            <line x1='64' y1='384' x2='304' y2='384' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px' />
-                            <line x1='208' y1='256' x2='448' y2='256' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px' />
-                            <line x1='64' y1='256' x2='144' y2='256' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px' />
-                            <circle cx='336' cy='128' r='32' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px' />
-                            <circle cx='176' cy='256' r='32' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px' />
-                            <circle cx='336' cy='384' r='32' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px' />
-                        </svg>
+                    <button class="sqaure-btn btn btn-info text-white" type="button">
+                        <i class="bi bi-search"></i>
                     </button>
                 </div>
             </div>

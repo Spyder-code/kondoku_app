@@ -10,7 +10,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="stats.html">
+                <a class="nav-link" href="/list">
                     <span>
                         <i class="nav-icon bi bi-binoculars"></i>
                         <span class="nav-text">Find Unit</span>
