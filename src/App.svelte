@@ -1,7 +1,7 @@
 <script lang="ts">
   import { router, Router } from '../.routify/instance.default';
   import { onMount } from 'svelte';
-  import Loading from './component/Loading.svelte';
+  import Loading from './lib/component/Loading.svelte';
   let loaded = false;
   onMount(() => {
       setTimeout(()=>{

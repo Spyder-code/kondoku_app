@@ -1,9 +1,22 @@
 <script lang="ts">
-    import UnitSliderOne from '../component/UnitSliderOne.svelte';
-    import UnitSliderTwo from '../component/UnitSliderTwo.svelte';
-    import BottomMenu from '../component/BottomMenu.svelte';
-    import UnitList from '../component/UnitList.svelte';
-    import Header from '../component/Header.svelte';
+    import UnitSliderOne from '../lib/component/UnitSliderOne.svelte';
+    import BottomMenu from '../lib/component/BottomMenu.svelte';
+    import Header from '../lib/component/Header.svelte';
+    import Apartment from '../lib/component/Apartment.svelte';
+    import axios from 'axios';
+    let url = import.meta.env.VITE_ENDPOINT;
+    let app_url = import.meta.env.VITE_APP_URL;
+    let units = [];
+    let units1 = [];
+    axios.get(url+'unit')
+    .then((res)=>{
+        units = res.data;
+    })
+    axios.get(url+'unit?page=2')
+    .then((res)=>{
+        units1 = res.data;
+    })
+    
 </script>
 
 <main class="flex-shrink-0">
@@ -37,7 +50,7 @@
                                 <path d='M480,256,266.89,52c-5-5.28-16.69-5.34-21.78,0L32,256' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px' />
                                 <polyline points='400 179 400 64 352 64 352 133' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px' />
                             </svg>
-                            <span class="vm ml-2">Property Type</span>
+                            <span class="vm ml-2">Apartment</span>
                         </h6>
                     </div>
                     <div class="col-auto">
@@ -51,8 +64,7 @@
                                 </svg>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink2">
-                                <a class="dropdown-item" href="#">Remove</a>
-                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Load more</a>
                             </div>
                         </div>
 
@@ -61,72 +73,7 @@
             </div>
             <div class="card-body">
                 <div class="row px-2">
-                    <div class="col-4 col-sm-3 col-md-2 col-lg-2 px-2">
-                        <input type="radio" name="itemtype" class="checkbox-boxed" id="room">
-                        <label class="checkbox-lable" for="room">
-                            <span class="image-boxed">
-                                <span class="h-180 background">
-                                    <img src="img/image-2.jpg" alt="">
-                                </span>
-                            </span>
-                            <span class="p">Room</span>
-                        </label>
-                    </div>
-                    <div class="col-4 col-sm-3 col-md-2 col-lg-2 px-2">
-                        <input type="radio" name="itemtype" class="checkbox-boxed" id="home" checked>
-                        <label class="checkbox-lable" for="home">
-                            <span class="image-boxed">
-                                <span class="h-180 background">
-                                    <img src="img/image-3.jpg" alt="">
-                                </span>
-                            </span>
-                            <span class="p">Home</span>
-                        </label>
-                    </div>
-                    <div class="col-4 col-sm-3 col-md-2 col-lg-2 px-2">
-                        <input type="radio" name="itemtype" class="checkbox-boxed" id="flat">
-                        <label class="checkbox-lable" for="flat">
-                            <span class="image-boxed">
-                                <span class="h-180 background">
-                                    <img src="img/image-1.jpg" alt="">
-                                </span>
-                            </span>
-                            <span class="p">Flat</span>
-                        </label>
-                    </div>
-                    <div class="col-4 col-sm-3 col-md-2 col-lg-2 px-2 mt-3 mt-md-0">
-                        <input type="radio" name="itemtype" class="checkbox-boxed" id="villa">
-                        <label class="checkbox-lable" for="villa">
-                            <span class="image-boxed">
-                                <span class="h-180 background">
-                                    <img src="img/image-4.jpg" alt="">
-                                </span>
-                            </span>
-                            <span class="p">Villa</span>
-                        </label>
-                    </div>
-                    <div class="col-4 col-sm-3 col-md-2 col-lg-2 px-2 mt-3 mt-md-0">
-                        <input type="radio" name="itemtype" class="checkbox-boxed" id="banglow">
-                        <label class="checkbox-lable" for="banglow">
-                            <span class="image-boxed">
-                                <span class="h-180 background">
-                                    <img src="img/image-5.jpg" alt="">
-                                </span>
-                            </span>
-                            <span class="p">Banglow</span>
-                        </label>
-                    </div>
-                    <div class="col-4 col-sm-3 col-md-2 col-lg-2 px-2 mt-3 mt-md-0">
-                        <input type="radio" name="itemtype" class="checkbox-boxed" id="farmhouse">
-                        <label class="checkbox-lable" for="farmhouse">
-                            <span class="image-boxed">
-                                <span class="h-180 background">
-                                    <img src="img/image-6.jpg" alt="">
-                                </span>
-                            </span>
-                            <span class="p">Farmhouse</span>
-                        </label>
-                    </div>
+                    <Apartment/>
                 </div>
             </div>
         </div>
@@ -134,21 +81,20 @@
 
     <div class="container-fluid px-0 mt-4">
         <!-- Swiper -->
-        <UnitSliderOne/>
+        <UnitSliderOne units={units} app_url={app_url}/>
     </div>
 
-    <div class="container-fluid px-0 mt-4">
+    <div class="container-fluid px-0 mt-2">
         <!-- Swiper -->
-        <UnitSliderTwo/>
+        <UnitSliderOne units={units1} app_url={app_url}/>
     </div>
 
-    <div class="container mt-4">
-        <div class="row">
-            <UnitList/>
-        </div>
+    <div class="container-fluid px-0 mt-4 text-center">
+        <a class="btn btn-sm btn-primary px-4" href="/list" style="width:200px">Load More</a>
     </div>
+
     <!-- PWA add to home display -->
-    <div class="container mt-2">
+    <div class="container mt-4">
         <div class="card" id="addtodevice">               
             <div class="card-body">
                 <div class="row">

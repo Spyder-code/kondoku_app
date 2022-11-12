@@ -267,7 +267,6 @@ table.no-border tfoot tr td {
   padding: 8px 15px;
   z-index: 99;
   backdrop-filter: blur(10px);
-  border-radius: 100px;
 }
 
 .header .navbar-brand {
@@ -1174,9 +1173,6 @@ textarea:focus,
   top: 0;
   height: 200px;
   width: 100%;
-  background: -moz-linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, #ff97b5 100%);
-  background: -webkit-linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, #ff97b5 100%);
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, #ff97b5 100%);
   z-index: 1;
 }
 
@@ -2360,4 +2356,10 @@ body.darkmode .link {
   .image-circle > .icon {
     margin: 0 auto -60px auto;
   }
+}
+
+.back{
+  font-size: 20pt;
+  margin-left: 20px;
+  color: black;;
 }

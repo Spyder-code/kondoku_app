@@ -105,8 +105,6 @@ $(window).on('load', function () {
             $(this).addClass('active');
         }
     });
-
-
 });
 
 $(window).on('scroll', function () {
