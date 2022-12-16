@@ -29,24 +29,24 @@
     <!-- <Header/> -->
     {#if unit}
     <div class="product-image-top">
-        <div class="background" style="background-image: url('{unit.image}');">
+        <div class="background" style="background-image: url('{app_url+unit.image}');">
             <a class="back" href="#">
                 <i class="bi bi-arrow-left"></i>
             </a>
-            <img src="{unit.image}" alt="" style="display: none;">
+            <img src="{app_url+unit.image}" alt="" style="display: none;">
         </div>
-        <a href="/images?unit_id={unit.id}&unit_name={unit_rent.unit_name}" class="tag-images-count text-white bg-dark " >
+        <a href="/images?unit_id={unit.id}&unit_name={unit.name}" class="tag-images-count text-white bg-dark " >
             <i class="bi bi-image"></i>
             <span class="vm">{unit.unit_images.length}</span>
         </a>
     </div>
     <!-- page content start -->
-    <div class="container top-30">
+    <div class="container-fluid top-30">
         <div class="card">
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <p>{unit_rent.unit_name}</p>
+                        <p>{unit.name}</p>
                     </div>
                     <div class="col-auto">
                         <p class="small text-secondary">
@@ -76,9 +76,6 @@
                             </svg>
                             <span class=" text-secondary">| {unit.apartment.name}</span>
                         </p>
-                    </div>
-                    <div class="col-auto">
-                        <p class="small text-secondary">{rupiah(unit_rent.price)}</p>
                     </div>
                 </div>
             </div>
@@ -172,7 +169,7 @@
 
 
                 <h6>Information</h6>
-                <div class="text-secondary">
+                <div class="text-secondary" style="font-size: .7rem;">
                     {@html unit.description ?? 'Tidak Ada informasi'}
                 </div>
                 

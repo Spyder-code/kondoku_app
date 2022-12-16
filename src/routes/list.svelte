@@ -5,6 +5,11 @@
 	import Layout from "../lib/component/Layout.svelte";
     import {onMount} from "svelte";
 	import InfiniteScroll from "../lib/InfinityScroll.svelte";
+    import { App } from '@capacitor/app';
+
+    App.addListener('appUrlOpen', data => {
+        alert('Back Press');
+    });
     
     let url = import.meta.env.VITE_ENDPOINT;
     let app_url = import.meta.env.VITE_APP_URL;
@@ -35,29 +40,13 @@
 
 <Layout>
 	<Header/>
-	<div class="container mt-4">
-        <div class="form-group mb-0">
-            <div class="row">
-                <div class="col">
-                    <input type="text" class="form-control search" placeholder="Search Property">
-                </div>
-                <div class="col-auto pl-0">
-                    <button class="sqaure-btn btn btn-info text-white" type="button">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="container-fluid my-4">
-        <div class="d-flex flex-wrap justify-content-center" style="gap:3px; overflow-x: scroll; max-height: 620px">
+        <div class="row" style="overflow-x: scroll; max-height: 620px">
             {#each data as unit}
-                {#each unit.unit_rent as item}
-                    {#if unit.image}
-                        <UnitCard unit={unit} item={item} url={app_url}/>
-                    {/if}
-                {/each}
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2 p-1">
+                    <UnitCard unit={unit} url={app_url}/>
+                </div>
             {:else}
                 <p>Tidak ada data!</p>
             {/each}

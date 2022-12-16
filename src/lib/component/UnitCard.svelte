@@ -1,6 +1,5 @@
 <script>
     export let unit;
-    export let item;
     export let url;
     function strlimit(text, count){
         return text.slice(0, count) + (text.length > count ? "..." : "");
@@ -11,12 +10,15 @@
         currency: "IDR"
         }).format(number);
     }
+    const name = (name)=>{
+        return name.length > 34 ? strlimit(name.toUpperCase(),30) : name.toUpperCase();
+    }
 </script>
-<div class="card product-card-large" style="max-width:165px;">
+<div class="card product-card-large" style="max-width:100%; height:250px;">
     <div class="card-body p-0">
         <div class="product-image-large" style="height: 110px;">
             <div class="background">
-                <img src="{url+unit.image}" alt="{item.unit_name}" style="height: 110px; width:100%;">
+                <img src="{url+unit.image}" alt="{unit.name}" style="height: 110px; width:100%;">
             </div>
             <!-- <button class="small-btn btn btn-danger text-white">
                 <svg xmlns='http://www.w3.org/2000/svg' class="icon-size-16 vm" viewBox='0 0 512 512'>
@@ -26,13 +28,10 @@
             </button> -->
         </div>
     </div>
-    <a href="property/{item.slug}" class="card-footer">
+    <a href="property/{unit.slug}" class="card-footer">
         <div class="row">
             <div class="col">
-                <p class="text-dark" style="font-size: .8rem;">{ strlimit(item.unit_name,50) }</p>
-            </div>
-            <div class="col-auto">
-                <p class="small text-secondary">{rupiah(item.price)}</p>
+                <p class="text-dark" style="font-size: .8rem;">{ name(unit.name) }</p>
             </div>
         </div>
         <div class="row">
@@ -43,9 +42,19 @@
                         <path d="M0 0h24v24H0z" fill="none" />
                         <path d="M0 0h24v24H0z" fill="none" />
                         <path fill="#FFD500" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
-                    <span class=" text-secondary">| {unit.apartment}</span>
+                    <span class=" text-secondary">| {unit.apartment ?? '-'}</span>
                 </p>
             </div>
+        </div>
+        <hr class="my-1">
+        <div class="row">
+            {#each unit.unit_rent as rent}
+                {#if rent.price!=0}
+                    <div class="col-auto">
+                        <p class="small text-dark">Rp. {rent.price} /{rent.duration}</p>
+                    </div>
+                {/if}
+            {/each}
         </div>
     </a>
 </div>

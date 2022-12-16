@@ -22,16 +22,15 @@
     pagination={false}
     class="swiper-container swiper-products">
     {#each units as unit}
-        {#each unit.unit_rent as item}
-            {#if unit.image}
+        {#if unit.image}
             <SwiperSlide>
                 <div class="card product-card-large">
                     <div class="card-body p-0">
                         <div class="product-image-large">
                             <div class="background">
-                                <img src="{app_url+unit.image}" alt="{item.unit_name}" style="height: 230px; width:100%;">
+                                <img src="{app_url+unit.image}" alt="{unit.name}" style="height: 230px; width:100%;">
                             </div>
-                            <a href="images?unit_id={unit.id}&unit_name={item.unit_name}" class="tag-images-count text-white bg-dark">
+                            <a href="images?unit_id={unit.id}&unit_name={unit.name}" class="tag-images-count text-white bg-dark">
                                 <svg xmlns='http://www.w3.org/2000/svg' class="icon-size-16 vm" viewBox='0 0 512 512'>
                                     <title>ionicons-v5-e</title>
                                     <path d='M432,112V96a48.14,48.14,0,0,0-48-48H64A48.14,48.14,0,0,0,16,96V352a48.14,48.14,0,0,0,48,48H80' style='fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px' />
@@ -50,13 +49,10 @@
                             </button>
                         </div>
                     </div>
-                    <a href="property/{item.slug}" class="card-footer">
+                    <a href="property/{unit.slug}" class="card-footer">
                         <div class="row">
                             <div class="col">
-                                <p class="text-dark" style="font-size: .8rem;">{ strlimit(item.unit_name,50) }</p>
-                            </div>
-                            <div class="col-auto">
-                                <p class="small text-secondary">{rupiah(item.price)}</p>
+                                <p class="text-dark" style="font-size: .8rem;">{ strlimit(unit.name,50) }</p>
                             </div>
                         </div>
                         <div class="row">
@@ -71,15 +67,23 @@
                                 </p>
                             </div>
                             <div class="col-auto">
-                                <p class="small text-secondary">For Rent</p>
+                                <p class="small text-primary">For Rent</p>
                             </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            {#each unit.unit_rent as rent}
+                                {#if rent.price!=0}
+                                    <div class="col-auto">
+                                        <p class="small text-dark">Rp. {rent.price} /{rent.duration}</p>
+                                    </div>
+                                {/if}
+                            {/each}
                         </div>
                     </a>
                 </div>
             </SwiperSlide>
-            {/if}
-        {:else}
-        {/each}
+        {/if}
     {:else}
     <SwiperSlide>
         <div class="card product-card-large">
