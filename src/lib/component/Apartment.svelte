@@ -1,5 +1,6 @@
 <script>
     import axios from 'axios';
+    import Loading from '../../lib/component/Loading.svelte';
     let url = import.meta.env.VITE_ENDPOINT;
     let app_url = import.meta.env.VITE_APP_URL;
     let data = [];
@@ -24,5 +25,16 @@
     </label>
 </div>
 {:else}
-    <p>is empty</p>
+    {#each Array(6) as _, index(index)}
+    <div class="col-4 col-sm-3 col-md-2 col-lg-2 px-2 my-1">
+        <input type="radio" name="apartment[]" class="checkbox-boxed">
+        <label class="checkbox-lable">
+            <span class="image-boxed">
+                <span class="h-180 background" style="background-color: beige;">
+                    
+                </span>
+            </span>
+        </label>
+    </div>
+    {/each}
 {/each}

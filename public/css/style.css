@@ -2363,3 +2363,8 @@ body.darkmode .link {
   margin-left: 20px;
   color: black;;
 }
+
+span.flatpickr-disabled{
+  text-decoration: line-through;
+  color: rgba(255, 0, 0, 0.34) !important;
+}

@@ -17,6 +17,57 @@ export default {
   "children": [
     {
       "meta": {},
+      "id": "_default_book",
+      "_regex": {},
+      "_paramKeys": {},
+      "name": "book",
+      "module": false,
+      "file": {
+        "path": "src/routes/book",
+        "dir": "src/routes",
+        "base": "book",
+        "ext": "",
+        "name": "book"
+      },
+      "children": [
+        {
+          "meta": {
+            "dynamic": true
+          },
+          "id": "_default_book__name__svelte",
+          "_regex": {},
+          "_paramKeys": {},
+          "name": "[name]",
+          "file": {
+            "path": "src/routes/book/[name].svelte",
+            "dir": "src/routes/book",
+            "base": "[name].svelte",
+            "ext": ".svelte",
+            "name": "[name]"
+          },
+          "asyncModule": () => import('../src/routes/book/[name].svelte'),
+          "children": []
+        },
+        {
+          "meta": {},
+          "id": "_default_book_confirm_svelte",
+          "_regex": {},
+          "_paramKeys": {},
+          "name": "confirm",
+          "file": {
+            "path": "src/routes/book/confirm.svelte",
+            "dir": "src/routes/book",
+            "base": "confirm.svelte",
+            "ext": ".svelte",
+            "name": "confirm"
+          },
+          "asyncModule": () => import('../src/routes/book/confirm.svelte'),
+          "children": []
+        }
+      ]
+    },
+    {
+      "meta": {},
       "id": "_default_images_svelte",
       "_regex": {},
       "_paramKeys": {},

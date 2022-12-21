@@ -1,0 +1,202 @@
+<script lang="ts">
+    import { book } from "../../store";
+    import { goto } from '@roxi/routify'
+    import moment from 'moment';
+    import axios from "axios";
+    import Loading from "../../lib/component/Loading.svelte";
+
+    let url = import.meta.env.VITE_ENDPOINT;
+    let app_url = import.meta.env.VITE_APP_URL;
+    let checkin = moment($book.checkin).format('L');
+    let checkout = moment($book.checkout).format('L');
+    let unit = null;
+    let unitRent = null;
+    let scCount = $book.duration=='month'?$book.count:3;
+    let unitPrice = 0;
+    let scPrice = 0;
+    let pbbPrice = 0;
+    let depositePrice = 0;
+    let total = 0;
+    let selected = 3;
+    let scOptions = [];
+
+    if ($book.unitId) {
+        axios.get(url+'unit/'+$book.unitId)
+        .then((res)=>{
+            unit=res.data.data;
+        });
+        axios.get(url+'unit-rent/'+$book.unitRentId)
+        .then((res)=>{
+            unitRent=res.data.data;
+            hitung();
+        });
+    }else{
+        $goto('/')
+    }
+
+    const rupiah = (number)=>{
+        return new Intl.NumberFormat("id-ID", {
+            style: "currency",
+            currency: "IDR"
+        }).format(number);
+    }
+
+    function isFloat(n){
+        return Number(n) === n && n % 1 !== 0;
+    }
+
+    const hitung = ()=>{
+        unitPrice = unitRent.price * $book.count;
+        depositePrice = unitRent.deposite;
+        if ($book.duration=='day') {
+            total = unitPrice + depositePrice;
+        }else if($book.duration=='month'){
+            scPrice = unit.service_charge * scCount;
+            total = unitPrice + depositePrice + scPrice;
+        }else if($book.duration=='year'){
+            scPrice = unit.service_charge * scCount;
+            pbbPrice = unitRent.tax;
+            total = unitPrice + depositePrice + scPrice + pbbPrice;
+            scOptions = [];
+            for (let i = 4*$book.count; i >0 ; i--) {
+                var c = (12*$book.count)/i;
+                if (isFloat(c)==false) {
+                    scOptions.push({
+                        label: i+' Time(s)',
+                        value: c
+                    })
+                }
+            }
+        }
+    }
+
+</script>
+
+    {#if unitRent}
+    <main class="flex-shrink-0">
+        <!-- Fixed navbar -->
+        <header class="header">
+            <div class="row">
+                <div class="col-auto px-0">
+                    <a href="../book/{unit.slug}" class="btn btn-link text-dark">
+                        <svg xmlns='http://www.w3.org/2000/svg' class="icon-size-24" viewBox='0 0 512 512'>
+                            <title>ionicons-v5-a</title>
+                            <polyline points='244 400 100 256 244 112' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:48px' />
+                            <line x1='120' y1='256' x2='412' y2='256' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:48px' />
+                        </svg>
+                    </a>
+                </div>
+                <div class="text-left col align-self-center">
+                    <h5>Book room</h5>
+                </div>
+            </div>
+        </header>
+    
+        <!-- page content start -->
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="form-group floating-form-group active">
+                        <p class="form-text">Ammay Johnson</p>
+                        <label class="floating-label">Name</label>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group floating-form-group active">
+                        <p class="form-text">amayjohnson@maxartkiller.coms</p>
+                        <label class="floating-label">Email Address</label>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group floating-form-group active">
+                        <p class="form-text">083857317946</p>
+                        <label class="floating-label">Phone Number</label>
+                    </div>
+    
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group floating-form-group active">
+                                <p class="form-text">{checkin}</p>
+                                <label class="floating-label">Checkin</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group floating-form-group active">
+                                <p class="form-text">{checkout}</p>
+                                <label class="floating-label">Checkout</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12 col-md-6 col-lg-4 mx-auto">  
+                    <div class="card text-center text-white bg-info-gradient mb-4">
+                        <div class="card-body-wrap">
+                            <div class="card-body">{ unit?unit.name:'Loading...' }</div>
+                        </div>
+                    </div>
+                    
+                    {#if $book.duration=='year'}
+                    <div class="form-group">
+                        <label class="floating-label">Service Charge Pay</label>
+                        <select class="form-control" bind:value={selected} on:change={() => {scCount=selected; hitung()}}>
+                            {#each scOptions as item}
+                                <option value="{item.value}">{item.label}</option>
+                            {:else}
+                                Loading...
+                            {/each}
+                        </select>
+                    </div>
+                    {/if}
+                    
+                    <table class="table no-border mb-0">
+                        <tbody class="font-weight-medium">
+                            <tr>
+                                <td>Book {$book.count} {$book.duration}(s)</td>
+                                <td class="text-right">{ rupiah(unitPrice) }</td>
+                            </tr>
+                            <tr>
+                                <td>Deposite</td>
+                                <td class="text-right">{ rupiah(depositePrice) }</td>
+                            </tr>
+                            {#if $book.duration!='day'}
+                            <tr>
+                                <td>Service Charge {scCount} month(s) </td>
+                                <td class="text-right">{ rupiah(scPrice) }</td>
+                            </tr>
+                            {/if}
+                            {#if $book.duration=='year'}
+                            <tr>
+                                <td>PBB </td>
+                                <td class="text-right">{ rupiah(pbbPrice) }</td>
+                            </tr>
+                            {/if}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>Total</td>
+                                <td class="text-right">{ rupiah(total) }</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <div class="row my-4">
+                <div class="col-12 col-md-6 col-lg-4 mx-auto">                    
+                    <a href="payment.html" class="btn btn-block btn-danger btn-lg">Pay Now</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    {:else}
+        <Loading/>
+    {/if}
+
+<style>
+    tr td{
+        font-size: .8rem;
+    }
+</style>

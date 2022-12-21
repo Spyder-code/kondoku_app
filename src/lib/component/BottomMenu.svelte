@@ -1,8 +1,13 @@
+<script lang="ts">
+    import { isActive, url } from "@roxi/routify";
+</script>
+
 <footer class="footer">
     <div class="container">
         <ul class="nav nav-pills nav-justified">
+            {#if $isActive('/list')||$isActive('/property/[name]')||$isActive('/book/[name]')}
             <li class="nav-item">
-                <a class="nav-link active" href="/">
+                <a class="nav-link" href="{$url('/')}">
                     <span>
                         <i class="nav-icon bi bi-house"></i>
                         <span class="nav-text">Home</span>
@@ -10,13 +15,32 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/list">
+                <a class="nav-link {$isActive('/list')||$isActive('/property/[name]')||$isActive('/book/[name]')?'active':''}" href="{$url('/list')}">
                     <span>
                         <i class="nav-icon bi bi-binoculars"></i>
                         <span class="nav-text">Find Unit</span>
                     </span>
                 </a>
             </li>
+            {:else}
+                <li class="nav-item">
+                    <a class="nav-link {$isActive('/')?'active':''}" href="{$url('/')}">
+                        <span>
+                            <i class="nav-icon bi bi-house"></i>
+                            <span class="nav-text">Home</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {$isActive('/list')||$isActive('/property/[name]')||$isActive('/book/[name]')?'active':''}" href="{$url('/list')}">
+                        <span>
+                            <i class="nav-icon bi bi-binoculars"></i>
+                            <span class="nav-text">Find Unit</span>
+                        </span>
+                    </a>
+                </li>
+            {/if}
+
             <li class="nav-item centerbutton">
                 <button type="button" class="nav-link" data-toggle="modal" data-target="#menumodal" id="centermenubtn" style="outline: none;">
                     <span class="theme-radial-gradient">

@@ -6,6 +6,7 @@
     import {onMount} from "svelte";
 	import InfiniteScroll from "../lib/InfinityScroll.svelte";
     import { App } from '@capacitor/app';
+    import Loading from "../lib/component/Loading.svelte";
 
     App.addListener('appUrlOpen', data => {
         alert('Back Press');
@@ -42,13 +43,13 @@
 	<Header/>
 
     <div class="container-fluid my-4">
-        <div class="row" style="overflow-x: scroll; max-height: 620px">
+        <div class="row" style="overflow-x: scroll; max-height: 680px">
             {#each data as unit}
                 <div class="col-6 col-sm-4 col-md-3 col-lg-2 p-1">
                     <UnitCard unit={unit} url={app_url}/>
                 </div>
             {:else}
-                <p>Tidak ada data!</p>
+                <Loading/>
             {/each}
             <InfiniteScroll
                 threshold={100}

@@ -2,6 +2,8 @@
   import { router, Router } from '../.routify/instance.default';
   import { onMount } from 'svelte';
   import Loading from './lib/component/Loading.svelte';
+  import 'flatpickr/dist/flatpickr.css';
+  import 'flatpickr/dist/themes/light.css';
   let loaded = false;
   onMount(() => {
       setTimeout(()=>{

@@ -3,6 +3,7 @@
     import Layout from "../../lib/component/Layout.svelte";
     import {params} from '@roxi/routify'
     import axios from "axios";
+    import Loading from "../../lib/component/Loading.svelte";
 
     let url = import.meta.env.VITE_ENDPOINT;
     let app_url = import.meta.env.VITE_APP_URL;
@@ -13,7 +14,6 @@
     axios.get(url+'get-unit/'+$params.name)
         .then((res)=>{
             unit = res.data.unit;
-            unit_rent = res.data.unit_rent;
             apartment_facilities = res.data.apartment_facilities;
             unit_facilities = res.data.unit_facilities;
         })
@@ -29,11 +29,8 @@
     <!-- <Header/> -->
     {#if unit}
     <div class="product-image-top">
-        <div class="background" style="background-image: url('{app_url+unit.image}');">
-            <a class="back" href="#">
-                <i class="bi bi-arrow-left"></i>
-            </a>
-            <img src="{app_url+unit.image}" alt="" style="display: none;">
+        <div class="background" style="background-image: url('{unit.image}');">
+            <img src="{unit.image}" alt="" style="display: none;">
         </div>
         <a href="/images?unit_id={unit.id}&unit_name={unit.name}" class="tag-images-count text-white bg-dark " >
             <i class="bi bi-image"></i>
@@ -173,12 +170,16 @@
                     {@html unit.description ?? 'Tidak Ada informasi'}
                 </div>
                 
-                <a href="buynow.html" class="mt-4 btn btn-info btn-block btn-lg">Buy Now</a>
+                <!-- Button trigger modal -->
+                <a href="../book/{unit.slug}" class="mt-4 btn btn-info btn-block btn-lg">
+                    Book Now
+                </a>
+                
             </div>
         </div>
     </div>
     {:else}
-        <p>Loading...</p>
+        <Loading/>
     {/if}
     <BottomMenu/>
 </Layout>

@@ -75,7 +75,7 @@
                             {#each unit.unit_rent as rent}
                                 {#if rent.price!=0}
                                     <div class="col-auto">
-                                        <p class="small text-dark">Rp. {rent.price} /{rent.duration}</p>
+                                        <p class="small text-dark">Rp. {rent.price_short} /{rent.duration}</p>
                                     </div>
                                 {/if}
                             {/each}
@@ -85,16 +85,6 @@
             </SwiperSlide>
         {/if}
     {:else}
-    <SwiperSlide>
-        <div class="card product-card-large">
-            <div class="card-body p-0">
-                <div class="product-image-large">
-                    <div class="background">
-                        <img src="img/image-4.jpg" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </SwiperSlide>
+    <div></div>
     {/each}
 </Swiper>

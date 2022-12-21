@@ -51,7 +51,7 @@
             {#each unit.unit_rent as rent}
                 {#if rent.price!=0}
                     <div class="col-auto">
-                        <p class="small text-dark">Rp. {rent.price} /{rent.duration}</p>
+                        <p class="small text-dark">Rp. {rent.price_short} /{rent.duration}</p>
                     </div>
                 {/if}
             {/each}
