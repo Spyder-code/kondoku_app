@@ -68,6 +68,38 @@ export default {
     },
     {
       "meta": {},
+      "id": "_default_cart_svelte",
+      "_regex": {},
+      "_paramKeys": {},
+      "name": "cart",
+      "file": {
+        "path": "src/routes/cart.svelte",
+        "dir": "src/routes",
+        "base": "cart.svelte",
+        "ext": ".svelte",
+        "name": "cart"
+      },
+      "asyncModule": () => import('../src/routes/cart.svelte'),
+      "children": []
+    },
+    {
+      "meta": {},
+      "id": "_default_home_svelte",
+      "_regex": {},
+      "_paramKeys": {},
+      "name": "home",
+      "file": {
+        "path": "src/routes/home.svelte",
+        "dir": "src/routes",
+        "base": "home.svelte",
+        "ext": ".svelte",
+        "name": "home"
+      },
+      "asyncModule": () => import('../src/routes/home.svelte'),
+      "children": []
+    },
+    {
+      "meta": {},
       "id": "_default_images_svelte",
       "_regex": {},
       "_paramKeys": {},
@@ -116,6 +148,22 @@ export default {
     },
     {
       "meta": {},
+      "id": "_default_login_svelte",
+      "_regex": {},
+      "_paramKeys": {},
+      "name": "login",
+      "file": {
+        "path": "src/routes/login.svelte",
+        "dir": "src/routes",
+        "base": "login.svelte",
+        "ext": ".svelte",
+        "name": "login"
+      },
+      "asyncModule": () => import('../src/routes/login.svelte'),
+      "children": []
+    },
+    {
+      "meta": {},
       "id": "_default_property",
       "_regex": {},
       "_paramKeys": {},
@@ -148,6 +196,22 @@ export default {
           "children": []
         }
       ]
+    },
+    {
+      "meta": {},
+      "id": "_default_register_svelte",
+      "_regex": {},
+      "_paramKeys": {},
+      "name": "register",
+      "file": {
+        "path": "src/routes/register.svelte",
+        "dir": "src/routes",
+        "base": "register.svelte",
+        "ext": ".svelte",
+        "name": "register"
+      },
+      "asyncModule": () => import('../src/routes/register.svelte'),
+      "children": []
     },
     {
       "meta": {
