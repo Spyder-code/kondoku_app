@@ -7,6 +7,8 @@
 	import InfiniteScroll from "../lib/InfinityScroll.svelte";
     import { App } from '@capacitor/app';
     import Loading from "../lib/component/Loading.svelte";
+    import { search } from "../store";
+    import axios from "axios";
 
     App.addListener('appUrlOpen', data => {
         alert('Back Press');
@@ -14,19 +16,35 @@
     
     let url = import.meta.env.VITE_ENDPOINT;
     let app_url = import.meta.env.VITE_APP_URL;
-        // if the api (like in this example) just have a simple numeric pagination
     let page = 1;
-    // but most likely, you'll have to store a token to fetch the next page
-    let nextUrl = '';
-    // store all the data here.
     let data = [];
-    // store the new batch of data here.
     let newBatch = [];
-    
+    let isSearch = false;
+
     async function fetchData() {
-        const response = await fetch(`${url}unit?page=${page}`);
-        newBatch = await response.json();
+        if($search.duration){
+            isSearch = true;
+            let data = {
+                duration:$search.duration,
+                apartment:$search.apartment,
+                is_all:$search.typeAll,
+                bedroom:$search.bedroom,
+                studio:$search.typeStudio,
+                start_date:$search.startDate,
+                end_date:$search.endDate,
+                page:page
+            };
+            axios.get(url+'unit-filter', {params:data}).then((res)=>{
+                newBatch = res.data
+            })
+            
+        }else{
+            isSearch = false;
+            const response = await fetch(`${url}unit?page=${page}`);
+            newBatch = await response.json();
+        }
     };
+    
     
     onMount(()=> {
         // load first batch onMount
