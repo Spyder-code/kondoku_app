@@ -1,6 +1,7 @@
 <script>
     export let unit;
     export let url;
+    export let duration = null;
     function strlimit(text, count){
         return text.slice(0, count) + (text.length > count ? "..." : "");
     }
@@ -49,10 +50,18 @@
         <hr class="my-1">
         <div class="row">
             {#each unit.unit_rent as rent}
-                {#if rent.price!=0}
-                    <div class="col-auto">
-                        <p class="small text-dark">Rp. {rent.price_short} /{rent.duration}</p>
-                    </div>
+                {#if duration}
+                    {#if rent.duration==duration}
+                        <div class="col-auto">
+                            <p class="small text-dark">Rp. {rent.price_short} /{rent.duration}</p>
+                        </div>
+                    {/if}
+                {:else}
+                    {#if rent.price!=0}
+                        <div class="col-auto">
+                            <p class="small text-dark">Rp. {rent.price_short} /{rent.duration}</p>
+                        </div>
+                    {/if}
                 {/if}
             {/each}
         </div>

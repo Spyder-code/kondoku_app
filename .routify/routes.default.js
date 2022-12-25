@@ -17,6 +17,22 @@ export default {
   "children": [
     {
       "meta": {},
+      "id": "_default_account_svelte",
+      "_regex": {},
+      "_paramKeys": {},
+      "name": "account",
+      "file": {
+        "path": "src/routes/account.svelte",
+        "dir": "src/routes",
+        "base": "account.svelte",
+        "ext": ".svelte",
+        "name": "account"
+      },
+      "asyncModule": () => import('../src/routes/account.svelte'),
+      "children": []
+    },
+    {
+      "meta": {},
       "id": "_default_book",
       "_regex": {},
       "_paramKeys": {},
@@ -211,6 +227,22 @@ export default {
         "name": "register"
       },
       "asyncModule": () => import('../src/routes/register.svelte'),
+      "children": []
+    },
+    {
+      "meta": {},
+      "id": "_default_search_svelte",
+      "_regex": {},
+      "_paramKeys": {},
+      "name": "search",
+      "file": {
+        "path": "src/routes/search.svelte",
+        "dir": "src/routes",
+        "base": "search.svelte",
+        "ext": ".svelte",
+        "name": "search"
+      },
+      "asyncModule": () => import('../src/routes/search.svelte'),
       "children": []
     },
     {

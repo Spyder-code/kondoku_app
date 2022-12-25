@@ -4,11 +4,14 @@
     import moment from 'moment';
     import axios from "axios";
     import Loading from "../../lib/component/Loading.svelte";
+    import { Preferences } from '@capacitor/preferences';
+    import ModalLogin from "../../lib/component/ModalLogin.svelte";
 
     let url = import.meta.env.VITE_ENDPOINT;
     let app_url = import.meta.env.VITE_APP_URL;
-    let checkin = moment($book.checkin).format('L');
-    let checkout = moment($book.checkout).format('L');
+    let checkin = moment($book.checkin).format('DD/MM/YYYY');
+    let checkout = moment($book.checkout).format('DD/MM/YYYY');
+    let user = null;
     let unit = null;
     let unitRent = null;
     let scCount = $book.duration=='month'?$book.count:3;
@@ -19,6 +22,7 @@
     let total = 0;
     let selected = 3;
     let scOptions = [];
+    let isLogin = user?false:true;
 
     if ($book.unitId) {
         axios.get(url+'unit/'+$book.unitId)
@@ -34,11 +38,20 @@
         $goto('/')
     }
 
+    async function getUser() {
+        const ret = await Preferences.get({ key: 'user' });
+        user = JSON.parse(ret.value);
+    }
+
     const rupiah = (number)=>{
         return new Intl.NumberFormat("id-ID", {
             style: "currency",
             currency: "IDR"
         }).format(number);
+    }
+
+    const login = ()=>{
+        isLogin = !isLogin;
     }
 
     function isFloat(n){
@@ -70,9 +83,11 @@
         }
     }
 
+    getUser();
+
 </script>
 
-    {#if unitRent}
+    {#if unitRent && user}
     <main class="flex-shrink-0">
         <!-- Fixed navbar -->
         <header class="header">
@@ -97,19 +112,19 @@
             <div class="row">
                 <div class="col-12 col-md-6">
                     <div class="form-group floating-form-group active">
-                        <p class="form-text">Ammay Johnson</p>
+                        <p class="form-text">{user.name}</p>
                         <label class="floating-label">Name</label>
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="form-group floating-form-group active">
-                        <p class="form-text">amayjohnson@maxartkiller.coms</p>
+                        <p class="form-text">{user.email}</p>
                         <label class="floating-label">Email Address</label>
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="form-group floating-form-group active">
-                        <p class="form-text">083857317946</p>
+                        <p class="form-text">{user.phone}</p>
                         <label class="floating-label">Phone Number</label>
                     </div>
     
@@ -192,7 +207,66 @@
         </div>
     </main>
     {:else}
-        <Loading/>
+        <div class="container mt-4">
+            <div class="row mt-3">
+                <div class="col-12 col-md-6 col-lg-4 mx-auto">  
+                    <div class="card text-center text-white bg-info-gradient mb-4">
+                        <div class="card-body-wrap">
+                            <div class="card-body">{ unit?unit.name:'Loading...' }</div>
+                        </div>
+                    </div>
+                    
+                    {#if $book.duration=='year'}
+                    <div class="form-group">
+                        <label class="floating-label">Service Charge Pay</label>
+                        <select class="form-control" bind:value={selected} on:change={() => {scCount=selected; hitung()}}>
+                            {#each scOptions as item}
+                                <option value="{item.value}">{item.label}</option>
+                            {:else}
+                                Loading...
+                            {/each}
+                        </select>
+                    </div>
+                    {/if}
+                    
+                    <table class="table no-border mb-0">
+                        <tbody class="font-weight-medium">
+                            <tr>
+                                <td>Book {$book.count} {$book.duration}(s)</td>
+                                <td class="text-right">{ rupiah(unitPrice) }</td>
+                            </tr>
+                            <tr>
+                                <td>Deposite</td>
+                                <td class="text-right">{ rupiah(depositePrice) }</td>
+                            </tr>
+                            {#if $book.duration!='day'}
+                            <tr>
+                                <td>Service Charge {scCount} month(s) </td>
+                                <td class="text-right">{ rupiah(scPrice) }</td>
+                            </tr>
+                            {/if}
+                            {#if $book.duration=='year'}
+                            <tr>
+                                <td>PBB </td>
+                                <td class="text-right">{ rupiah(pbbPrice) }</td>
+                            </tr>
+                            {/if}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>Total</td>
+                                <td class="text-right">{ rupiah(total) }</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <button on:click={()=>login()} class="text-center text-white btn btn-sm btn-warning w-100">Login</button>
+        {#if unit}
+        <a href="../book/{unit.slug}" class="text-center text-white btn btn-sm btn-primary mt-2 w-100">Back</a>
+        {/if}
+        <ModalLogin bind:isActive={isLogin} bind:user={user}/>
     {/if}
 
 <style>

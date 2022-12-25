@@ -56,7 +56,7 @@
             </div>
             <div class="col-12">
                 <div class="container-fluid px-0 mt-4 text-center">
-                    <a class="btn btn-sm btn-success px-4" href="/list" style="width:200px">Info Unit</a>
+                    <a class="btn btn-sm btn-success px-4" href="/property/{unit_name}" style="width:200px">Info Unit</a>
                 </div>
             </div>
         </div>

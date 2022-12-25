@@ -12,6 +12,7 @@ export const book = writable({
 export const search = writable({
     duration:null,
     apartment:null,
+    apartmentName:null,
     bedroom:null,
     typeAll:null,
     typeStudio:null,

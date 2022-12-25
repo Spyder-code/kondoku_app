@@ -23,7 +23,6 @@
     let newBatch = [];
     let loaded = false;
 
-
     async function fetchData() {
         if($search.duration){
             let data = {
@@ -53,7 +52,7 @@
             fetchData()
         },2000);
     });
-    
+
     $: data = [
             ...data,
             ...newBatch
