@@ -52,44 +52,47 @@
     }
 
     const searchSubmit = ()=>{
-        let apartmentName;
-        let slice = duration.slice(0, -1);
-        let isApartment = apartment=='all'?0:apartment;
-        let isBedroom = bedroom.length>0?bedroom:0;
-        if (isApartment>0) {
-            axios.get(endpoint+'apartment/'+isApartment)
-                .then((res)=>{
-                    apartmentName=res.data.data.name;
-                    search.set({
-                        duration:slice,
-                        apartment:isApartment,
-                        apartmentName:apartmentName,
-                        bedroom:isBedroom,
-                        typeAll:typeAll?typeAll:0,
-                        typeStudio:typeStudio?typeStudio:0,
-                        startDate:checkin,
-                        endDate:checkout,
-                    });
-                })
-        }else{
-            search.set({
-                duration:slice,
-                apartment:isApartment,
-                apartmentName:'All',
-                bedroom:isBedroom,
-                typeAll:typeAll?typeAll:0,
-                typeStudio:typeStudio?typeStudio:0,
-                startDate:checkin,
-                endDate:checkout,
-            });
-        }
+        isActiveModal = false;
+        setTimeout(() => {
+            let apartmentName;
+            let slice = duration.slice(0, -1);
+            let isApartment = apartment=='all'?0:apartment;
+            let isBedroom = bedroom.length>0?bedroom:0;
+            if (isApartment>0) {
+                axios.get(endpoint+'apartment/'+isApartment)
+                    .then((res)=>{
+                        apartmentName=res.data.data.name;
+                        search.set({
+                            duration:slice,
+                            apartment:isApartment,
+                            apartmentName:apartmentName,
+                            bedroom:isBedroom,
+                            typeAll:typeAll?typeAll:0,
+                            typeStudio:typeStudio?typeStudio:0,
+                            startDate:checkin,
+                            endDate:checkout,
+                        });
+                    })
+            }else{
+                search.set({
+                    duration:slice,
+                    apartment:isApartment,
+                    apartmentName:'All',
+                    bedroom:isBedroom,
+                    typeAll:typeAll?typeAll:0,
+                    typeStudio:typeStudio?typeStudio:0,
+                    startDate:checkin,
+                    endDate:checkout,
+                });
+            }
 
-        if ($isActive('/list')) {
-            $goto('/search');
-        }else{
-            $goto('/list');
-        }
+            if ($isActive('/list')) {
+                $goto('/search');
+            }else{
+                $goto('/list');
+            }
 
+        }, 1000);
     }
 </script>
 

@@ -100,6 +100,22 @@ export default {
     },
     {
       "meta": {},
+      "id": "_default_filter_svelte",
+      "_regex": {},
+      "_paramKeys": {},
+      "name": "filter",
+      "file": {
+        "path": "src/routes/filter.svelte",
+        "dir": "src/routes",
+        "base": "filter.svelte",
+        "ext": ".svelte",
+        "name": "filter"
+      },
+      "asyncModule": () => import('../src/routes/filter.svelte'),
+      "children": []
+    },
+    {
+      "meta": {},
       "id": "_default_home_svelte",
       "_regex": {},
       "_paramKeys": {},
@@ -176,6 +192,22 @@ export default {
         "name": "login"
       },
       "asyncModule": () => import('../src/routes/login.svelte'),
+      "children": []
+    },
+    {
+      "meta": {},
+      "id": "_default_pay_svelte",
+      "_regex": {},
+      "_paramKeys": {},
+      "name": "pay",
+      "file": {
+        "path": "src/routes/pay.svelte",
+        "dir": "src/routes",
+        "base": "pay.svelte",
+        "ext": ".svelte",
+        "name": "pay"
+      },
+      "asyncModule": () => import('../src/routes/pay.svelte'),
       "children": []
     },
     {

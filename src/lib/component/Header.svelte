@@ -20,9 +20,9 @@
 <header class="header">
     <div class="row">
         <div class="col-auto px-0">
-            <button class="menu-btn btn btn-link-default ml-3 mt-2" type="button">
+            <!-- <button class="menu-btn btn btn-link-default ml-3 mt-2" type="button">
                 <i class="bi bi-heart" style="font-size: 1.5rem; color:rgb(244, 66, 66);"><span style="font-size: 1rem;">13</span></i>
-            </button>
+            </button> -->
         </div>
         <div class="text-center col">
             <a class="navbar-brand" href="/detail">
@@ -34,13 +34,13 @@
             <div class="dropdown">
                 <a class="icon icon-44 shadow-sm" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <figure class="m-0 background">
-                        <img src="img/user-1.jpg" alt="">
+                        <img src="img/logo/fav-icon.png" class="img-fluid" alt="KONDOKU">
                     </figure>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     {#if user}
-                        <a class="dropdown-item px-0 py-1" style="font-size: .8rem;" href="#"> <i class="mr-2 bi bi-person"></i> My Account</a>
-                        <a class="dropdown-item px-0 py-1" style="font-size: .8rem;" href="#"> <i class="mr-2 bi bi-key"></i> Change Password</a>
+                        <a class="dropdown-item px-0 py-1" style="font-size: .8rem;" href="{$url('/account')}"> <i class="mr-2 bi bi-person"></i> My Account</a>
+                        <a class="dropdown-item px-0 py-1" style="font-size: .8rem;" href="{$url('/account')}"> <i class="mr-2 bi bi-key"></i> Change Password</a>
                         <div class="dropdown-divider"></div>
                         <button on:click={()=>logout()} class="dropdown-item px-0 py-1" style="font-size: .8rem;"> <i class="mr-2 bi bi-door-open"></i> Logout</button>
                         {:else}

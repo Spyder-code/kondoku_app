@@ -74,7 +74,7 @@
         return true;
     }
 </script>
-   <!-- Fixed navbar -->
+
     <header class="header">
         <div class="row">
             <div class="col-auto px-0">
@@ -116,8 +116,6 @@
                     <a href="" class="link">Forget password?</a>
                 </div> -->
                 <button on:click={()=>login()} class="btn btn-block btn-success btn-sm"> <i class="bi bi-people"></i> Sign In</button>
-                <a href="index.html" class="btn btn-block btn-danger btn-sm"> <i class="bi bi-google"></i> Sign In Google</a>
-                <a href="index.html" class="btn btn-block btn-primary btn-sm"> <i class="bi bi-facebook"></i> Sign In Facebook</a>
             </div>
         </div>
     </main>

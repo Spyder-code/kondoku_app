@@ -1,7 +1,7 @@
 <script lang="ts">
     import axios from "axios";
     import iziToast from "izitoast";
-    import { goto } from "@roxi/routify";
+    import { goto, url } from "@roxi/routify";
     import { Preferences } from '@capacitor/preferences';
     import 'izitoast/dist/css/iziToast.css'
 
@@ -108,8 +108,7 @@
                         <a href="" class="link">Forget password?</a>
                     </div> -->
                     <button on:click={()=>login()} class="btn btn-block btn-success btn-sm"> <i class="bi bi-people"></i> Sign In</button>
-                    <a href="index.html" class="btn btn-block btn-danger btn-sm"> <i class="bi bi-google"></i> Sign In Google</a>
-                    <a href="index.html" class="btn btn-block btn-primary btn-sm"> <i class="bi bi-facebook"></i> Sign In Facebook</a>
+                    <a href="{$url('/register')}" class="btn btn-block btn-primary btn-sm"> <i class="bi bi-people-fill"></i> Sign Up</a>
                 </div>
             </div>
         </div>

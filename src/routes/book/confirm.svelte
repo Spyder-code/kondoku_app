@@ -3,18 +3,17 @@
     import { goto } from '@roxi/routify'
     import moment from 'moment';
     import axios from "axios";
-    import Loading from "../../lib/component/Loading.svelte";
     import { Preferences } from '@capacitor/preferences';
     import ModalLogin from "../../lib/component/ModalLogin.svelte";
 
     let url = import.meta.env.VITE_ENDPOINT;
-    let app_url = import.meta.env.VITE_APP_URL;
     let checkin = moment($book.checkin).format('DD/MM/YYYY');
     let checkout = moment($book.checkout).format('DD/MM/YYYY');
+    let transaction = null;
     let user = null;
     let unit = null;
     let unitRent = null;
-    let scCount = $book.duration=='month'?$book.count:3;
+    let scCount = $book.duration=='day'?0:($book.duration=='month'?$book.count:3);
     let unitPrice = 0;
     let scPrice = 0;
     let pbbPrice = 0;
@@ -83,6 +82,44 @@
         }
     }
 
+    const pay = ()=>{
+        let day;
+        let sc;
+        if ($book.duration=='day') {
+            day = 'harian';
+            sc = 0;
+        }else if($book.duration=='month'){
+            day = 'bulanan';
+            sc = unit.service_charge;
+        }else if($book.duration=='year'){
+            day = 'tahunan';
+            sc = unit.service_charge;
+        }
+        var data = {
+            unit_rent_id:unitRent.id,
+            unit_id:unit.id,
+            user_id:user.id,
+            check_in:moment($book.checkin).format('YYYY-MM-DD'),
+            check_out:moment($book.checkout).format('YYYY-MM-DD'),
+            type:day,
+            count:$book.count,
+            unit_price:unitPrice,
+            unit_deposite_price:depositePrice,
+            unit_service_charge_price:sc,
+            unit_service_charge_count:scCount,
+            unit_tax_price:pbbPrice,
+            total_price:total
+        }
+
+        axios.post(url+'booking-app',data)
+        .then((res)=>{
+            transaction = res.data;
+            $goto('/pay',{
+                transaction:transaction.id
+            });
+        });
+    }
+
     getUser();
 
 </script>
@@ -124,7 +161,7 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="form-group floating-form-group active">
-                        <p class="form-text">{user.phone}</p>
+                        <p class="form-text">{user.phone ?? 'xxx xxxx xxxx'}</p>
                         <label class="floating-label">Phone Number</label>
                     </div>
     
@@ -201,7 +238,7 @@
             </div>
             <div class="row my-4">
                 <div class="col-12 col-md-6 col-lg-4 mx-auto">                    
-                    <a href="payment.html" class="btn btn-block btn-danger btn-lg">Pay Now</a>
+                    <button on:click={()=>pay()} class="btn btn-block btn-danger btn-lg">Pay Now</button>
                 </div>
             </div>
         </div>
