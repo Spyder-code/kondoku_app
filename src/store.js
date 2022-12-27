@@ -18,4 +18,5 @@ export const search = writable({
     typeStudio:null,
     startDate:null,
     endDate:null,
+    name:null,
 })

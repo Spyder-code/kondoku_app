@@ -6,6 +6,8 @@
     import moment from "moment";
     import { search } from "../store";
     import BottomMenu from "../lib/component/BottomMenu.svelte";
+    import Header from "../lib/component/Header.svelte";
+    import Apartment from "../lib/component/Apartment.svelte";
 
     export let isActiveModal;
     let duration = 'days';
@@ -73,6 +75,7 @@
                             typeStudio:typeStudio?typeStudio:0,
                             startDate:checkin,
                             endDate:checkout,
+                            name:0,
                         });
                     })
             }else{
@@ -85,6 +88,7 @@
                     typeStudio:typeStudio?typeStudio:0,
                     startDate:checkin,
                     endDate:checkout,
+                    name:0,
                 });
             }
 
@@ -99,13 +103,14 @@
 </script>
 
 <Layout>
-    <div class="card shadow">
+    <Header/>
+    <div class="card shadow mt-3">
         <div class="card-body">
             <div class="d-flex justify-content-between">
                 <h6><span class="fw-bold">Rent Property Hassle-Free!</span></h6>
-                <button on:click={()=>changeActive()}  type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <!-- <button on:click={()=>changeActive()}  type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                </button>
+                </button> -->
             </div>
             <hr>
             <div class="text-center d-flex mb-4" style="justify-content: center;">
@@ -161,7 +166,7 @@
                     <div class="rounded" style="font-size:.6rem">3 BR</div>
                 </button>
             </div>
-            <button on:click={()=>searchSubmit()} class="btn btn-success btn-sm w-100" style="position:relative; top:170px">Search</button>
+            <button on:click={()=>searchSubmit()} class="btn btn-success btn-sm w-100">Search</button>
         </div>
     </div>
     <BottomMenu/>
@@ -173,7 +178,6 @@
     .card{
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
-        height: 500px;
     }
     .label-duration{
         width: 100px;

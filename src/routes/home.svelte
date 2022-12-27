@@ -5,11 +5,15 @@
     import Apartment from '../lib/component/Apartment.svelte';
     import axios from 'axios';
     import { Preferences } from '@capacitor/preferences';
+    import { search } from '../store';
+    import { goto } from "@roxi/routify";
+
     let url = import.meta.env.VITE_ENDPOINT;
     let app_url = import.meta.env.VITE_APP_URL;
     let units = [];
     let units1 = [];
     let user;
+    let name = '';
     axios.get(url+'unit')
     .then((res)=>{
         units = res.data;
@@ -24,6 +28,21 @@
         user = JSON.parse(ret.value);
     }
 
+    const searchName = ()=>{
+        search.set({
+            duration:0,
+            apartment:0,
+            apartmentName:0,
+            bedroom:0,
+            typeAll:true,
+            typeStudio:0,
+            startDate:0,
+            endDate:0,
+            name:name,
+        });
+        $goto('/list');
+    }
+
     getUser();
     
 </script>
@@ -36,10 +55,10 @@
         <div class="form-group mb-0">
             <div class="row">
                 <div class="col">
-                    <input type="text" class="form-control search" placeholder="Search Property">
+                    <input type="text" class="form-control search" placeholder="Search Property" bind:value={name}>
                 </div>
                 <div class="col-auto pl-0">
-                    <button class="sqaure-btn btn btn-info text-white" type="button">
+                    <button class="sqaure-btn btn btn-info text-white" type="button" on:click={searchName}>
                         <i class="bi bi-search"></i>
                     </button>
                 </div>
@@ -62,7 +81,7 @@
                             <span class="vm ml-2">Apartment</span>
                         </h6>
                     </div>
-                    <div class="col-auto">
+                    <!-- <div class="col-auto">
                         <div class="dropdown">
                             <a class="btn btn-link text-secondary py-0 dropdown-toggle no-caret" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <svg xmlns='http://www.w3.org/2000/svg' class="icon-size-16" viewBox='0 0 512 512'>
@@ -76,8 +95,7 @@
                                 <a class="dropdown-item" href="#">Load more</a>
                             </div>
                         </div>
-
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="card-body">
@@ -175,7 +193,7 @@
 <BottomMenu/>
 
 <!-- filter menu -->
-<div class="filter">
+<!-- <div class="filter">
     <div class="container filters-container">
         <button class="btn btn-danger small-btn filter-btn close text-white"><svg xmlns='http://www.w3.org/2000/svg' class="icon-size-24" viewBox='0 0 512 512'>
                 <title>kondoku-icon</title>
@@ -230,4 +248,4 @@
 
     </div>
 </div>
-<div class="filter-backdrop"></div>
+<div class="filter-backdrop"></div> -->

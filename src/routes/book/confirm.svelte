@@ -5,6 +5,7 @@
     import axios from "axios";
     import { Preferences } from '@capacitor/preferences';
     import ModalLogin from "../../lib/component/ModalLogin.svelte";
+    import { onMount } from "svelte";
 
     let url = import.meta.env.VITE_ENDPOINT;
     let checkin = moment($book.checkin).format('DD/MM/YYYY');
@@ -13,13 +14,13 @@
     let user = null;
     let unit = null;
     let unitRent = null;
-    let scCount = $book.duration=='day'?0:($book.duration=='month'?$book.count:3);
-    let unitPrice = 0;
-    let scPrice = 0;
-    let pbbPrice = 0;
-    let depositePrice = 0;
-    let total = 0;
-    let selected = 3;
+    let scCount:number = $book.duration=='day'?0:($book.duration=='month'?$book.count:3);
+    let unitPrice:number = 0;
+    let scPrice:number = 0;
+    let pbbPrice:number = 0;
+    let depositePrice:number = 0;
+    let total:number = 0;
+    let selected:number = 3;
     let scOptions = [];
     let isLogin = user?false:true;
 
@@ -27,19 +28,14 @@
         axios.get(url+'unit/'+$book.unitId)
         .then((res)=>{
             unit=res.data.data;
-        });
-        axios.get(url+'unit-rent/'+$book.unitRentId)
-        .then((res)=>{
-            unitRent=res.data.data;
-            hitung();
+            axios.get(url+'unit-rent/'+$book.unitRentId)
+            .then((res)=>{
+                unitRent=res.data.data;
+                hitung();
+            });
         });
     }else{
         $goto('/')
-    }
-
-    async function getUser() {
-        const ret = await Preferences.get({ key: 'user' });
-        user = JSON.parse(ret.value);
     }
 
     const rupiah = (number)=>{
@@ -61,17 +57,17 @@
         unitPrice = unitRent.price * $book.count;
         depositePrice = unitRent.deposite;
         if ($book.duration=='day') {
-            total = unitPrice + depositePrice;
+            total = parseInt(unitPrice) + parseInt(depositePrice);
         }else if($book.duration=='month'){
-            scPrice = unit.service_charge * scCount;
-            total = unitPrice + depositePrice + scPrice;
+            scPrice = parseInt(unit.service_charge) * parseInt(scCount);
+            total = parseInt(unitPrice) + parseInt(depositePrice) + parseInt(scPrice);
         }else if($book.duration=='year'){
-            scPrice = unit.service_charge * scCount;
-            pbbPrice = unitRent.tax;
-            total = unitPrice + depositePrice + scPrice + pbbPrice;
+            scPrice = parseInt(unit.service_charge) * parseInt(scCount);
+            pbbPrice = parseInt(unitRent.tax);
+            total = parseInt(unitPrice) + parseInt(depositePrice) + parseInt(scPrice) + parseInt(pbbPrice);
             scOptions = [];
-            for (let i = 4*$book.count; i >0 ; i--) {
-                var c = (12*$book.count)/i;
+            for (let i = 4*parseInt($book.count); i >0 ; i--) {
+                var c = (12*parseInt($book.count))/i;
                 if (isFloat(c)==false) {
                     scOptions.push({
                         label: i+' Time(s)',
@@ -120,7 +116,10 @@
         });
     }
 
-    getUser();
+    onMount(async () => {
+        const ret = await Preferences.get({ key: 'user' });
+        user = JSON.parse(ret.value);
+	});
 
 </script>
 

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">app</string>
-    <string name="title_activity_main">app</string>
+    <string name="app_name">Kondoku</string>
+    <string name="title_activity_main">kondoku</string>
     <string name="package_name">com.kondoku.app</string>
     <string name="custom_url_scheme">com.kondoku.app</string>
 </resources>

@@ -71,6 +71,7 @@
                             typeStudio:typeStudio?typeStudio:0,
                             startDate:checkin,
                             endDate:checkout,
+                            name:0,
                         });
                     })
             }else{
@@ -83,6 +84,7 @@
                     typeStudio:typeStudio?typeStudio:0,
                     startDate:checkin,
                     endDate:checkout,
+                    name:0,
                 });
             }
 

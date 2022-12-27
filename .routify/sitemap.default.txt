@@ -1,0 +1,15 @@
+/
+/account
+/book
+/book/confirm
+/cart
+/filter
+/home
+/images
+/index
+/list
+/login
+/pay
+/property
+/register
+/search

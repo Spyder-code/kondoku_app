@@ -31,12 +31,19 @@
             </li>
 
             <li class="nav-item centerbutton">
-                <button on:click={()=>changeIsModalSearch()} type="button" class="nav-link" data-toggle="modal" data-target="#menumodal" id="centermenubtn" style="outline: none;">
+                <button on:click={()=>$goto('/filter')} type="button" class="nav-link" id="centermenubtn" style="outline: none;">
                     <span class="theme-radial-gradient">
                         <i class="bi bi-grid" style="font-size:22px;"></i>
                     </span>
                 </button>
             </li>
+            <!-- <li class="nav-item centerbutton">
+                <button on:click={()=>changeIsModalSearch()} type="button" class="nav-link" data-toggle="modal" data-target="#menumodal" id="centermenubtn" style="outline: none;">
+                    <span class="theme-radial-gradient">
+                        <i class="bi bi-grid" style="font-size:22px;"></i>
+                    </span>
+                </button>
+            </li> -->
 
             <li class="nav-item">
                 <a class="nav-link {$isActive('/cart')?'active':''}" href="{$url('/cart')}">
