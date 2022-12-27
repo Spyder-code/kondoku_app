@@ -76,7 +76,7 @@
                             <span>Checkin : {moment(booking.check_in).format('DD/MM/YYYY')}</span>
                         </div>
                         <div class="col-6 text-dark">
-                            <span>Checkout : {moment(booking.check_in).format('DD/MM/YYYY')}</span>
+                            <span>Checkout : {moment(booking.check_out).format('DD/MM/YYYY')}</span>
                         </div>
                     </div>
                 </div>
