@@ -161,7 +161,7 @@
                     <div class="col text-secondary pl-0">
                         <h6 class="text-dark">Join <span class="font-weight-bold">Property Agent</span></h6>
                         <p class=" text-secondary">Safe and reliable. Quick sell. Quick rent.</p>
-                        <button class="btn btn-sm btn-primary px-4" id="addtohome">Register</button>
+                        <a href="https://wa.me/6281231111179" class="btn btn-sm btn-primary px-4" id="addtohome">Send Message</a>
                     </div>
                 </div>
             </div>
@@ -211,6 +211,12 @@
                         <div class="d-flex justify-content-between">
                             <span><i class="mr-2 bi bi-envelope"></i> cs@kondoku.co.id</span>
                             <a href="mailto:cs@kondoku.co.id" style="font-size: .7rem; width:80px;" class="text-center rounded border border-primary px-3 py-1">Message</a>
+                        </div>
+                    </li>
+                    <li class="list-group-item text-secondary">
+                        <div class="d-flex justify-content-between">
+                            <span><i class="mr-2 bi bi-map"></i> Maps</span>
+                            <a href="https://goo.gl/maps/zrDn3peFZe5FmAWo8" style="font-size: .7rem; width:80px;" class="text-center rounded border border-primary px-3 py-1">Open</a>
                         </div>
                     </li>
                 </ul>
