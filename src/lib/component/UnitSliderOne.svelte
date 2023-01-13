@@ -3,6 +3,7 @@
     export let units;
     export let app_url;
     import { Swiper, SwiperSlide } from 'swiper/svelte';
+    import {params, url} from '@roxi/routify'
     // Import Swiper styles
     import 'swiper/css';
     function strlimit(text, count){
@@ -30,7 +31,7 @@
                             <div class="background">
                                 <img src="{app_url+unit.image}" alt="{unit.name}" style="height: 230px; width:100%;">
                             </div>
-                            <a href="images?unit_id={unit.id}&unit_name={unit.name}" class="tag-images-count text-white bg-dark">
+                            <a href="/image/{unit.slug}" class="tag-images-count text-white bg-dark">
                                 <svg xmlns='http://www.w3.org/2000/svg' class="icon-size-16 vm" viewBox='0 0 512 512'>
                                     <title>ionicons-v5-e</title>
                                     <path d='M432,112V96a48.14,48.14,0,0,0-48-48H64A48.14,48.14,0,0,0,16,96V352a48.14,48.14,0,0,0,48,48H80' style='fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px' />
@@ -41,12 +42,12 @@
                                 </svg>
                                 <span class="vm">{unit.unit_images.length}</span>
                             </a>
-                            <button class="small-btn btn btn-danger text-white">
+                            <!-- <button class="small-btn btn btn-danger text-white">
                                 <svg xmlns='http://www.w3.org/2000/svg' class="icon-size-16 vm" viewBox='0 0 512 512'>
                                     <title>ionicons-v5-f</title>
                                     <path d='M352.92,80C288,80,256,144,256,144s-32-64-96.92-64C106.32,80,64.54,124.14,64,176.81c-1.1,109.33,86.73,187.08,183,252.42a16,16,0,0,0,18,0c96.26-65.34,184.09-143.09,183-252.42C447.46,124.14,405.68,80,352.92,80Z' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px' />
                                 </svg>
-                            </button>
+                            </button> -->
                         </div>
                     </div>
                     <a href="property/{unit.slug}" class="card-footer">

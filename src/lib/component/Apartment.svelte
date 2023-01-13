@@ -6,11 +6,14 @@
     let url = import.meta.env.VITE_ENDPOINT;
     let app_url = import.meta.env.VITE_APP_URL;
     let data = [];
+    export let slice = true;
 
     axios.get(url+'apartment')
     .then((res)=>{
         data = res.data;
-        data = data.slice(0,6);
+        if (slice) {
+            data = data.slice(0,6);
+        }
     })
 
     const apartmentFilter = (id,name)=>{

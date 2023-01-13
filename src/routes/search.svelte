@@ -68,6 +68,7 @@
             typeStudio:null,
             startDate:null,
             endDate:null,
+            name:null
         });
 
         $goto('/list');

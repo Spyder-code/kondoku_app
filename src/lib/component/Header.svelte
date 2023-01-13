@@ -26,7 +26,7 @@
         </div>
         <div class="text-center col">
             <a class="navbar-brand" href="/detail">
-                <img src="img/logo/kondoku1.png" alt="KONDOKU" style="height: 60px;">
+                <img src="https://www.kondoku.co.id/frontend/img/logo/kondoku-logo.png" alt="KONDOKU" style="height: 60px;">
                 <!-- <h4>KONDOKU</h4> -->
             </a>
         </div>
@@ -34,7 +34,7 @@
             <div class="dropdown">
                 <a class="icon icon-44 shadow-sm" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <figure class="m-0 background">
-                        <img src="img/logo/fav-icon.png" class="img-fluid" alt="KONDOKU">
+                        <img src="https://www.kondoku.co.id/frontend/img/logo/fav-icon.png" class="img-fluid" alt="KONDOKU">
                     </figure>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">

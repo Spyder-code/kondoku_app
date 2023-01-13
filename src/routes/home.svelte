@@ -6,19 +6,19 @@
     import axios from 'axios';
     import { Preferences } from '@capacitor/preferences';
     import { search } from '../store';
-    import { goto } from "@roxi/routify";
+    import { goto, url } from "@roxi/routify";
 
-    let url = import.meta.env.VITE_ENDPOINT;
+    let endpoint = import.meta.env.VITE_ENDPOINT;
     let app_url = import.meta.env.VITE_APP_URL;
     let units = [];
     let units1 = [];
     let user;
     let name = '';
-    axios.get(url+'unit')
+    axios.get(endpoint+'unit')
     .then((res)=>{
         units = res.data;
     })
-    axios.get(url+'unit?page=2')
+    axios.get(endpoint+'unit?page=2')
     .then((res)=>{
         units1 = res.data;
     })
@@ -39,6 +39,36 @@
             startDate:0,
             endDate:0,
             name:name,
+        });
+        $goto('/list');
+    }
+
+    const searchBedroom = (bedroom)=>{
+        search.set({
+            duration:0,
+            apartment:0,
+            apartmentName:0,
+            bedroom:[bedroom],
+            typeAll:0,
+            typeStudio:0,
+            startDate:0,
+            endDate:0,
+            name:0,
+        });
+        $goto('/list');
+    }
+
+    const searchStudio = ()=>{
+        search.set({
+            duration:0,
+            apartment:0,
+            apartmentName:0,
+            bedroom:0,
+            typeAll:0,
+            typeStudio:1,
+            startDate:0,
+            endDate:0,
+            name:0,
         });
         $goto('/list');
     }
@@ -81,7 +111,7 @@
                             <span class="vm ml-2">Apartment</span>
                         </h6>
                     </div>
-                    <!-- <div class="col-auto">
+                    <div class="col-auto">
                         <div class="dropdown">
                             <a class="btn btn-link text-secondary py-0 dropdown-toggle no-caret" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <svg xmlns='http://www.w3.org/2000/svg' class="icon-size-16" viewBox='0 0 512 512'>
@@ -92,10 +122,10 @@
                                 </svg>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink2">
-                                <a class="dropdown-item" href="#">Load more</a>
+                                <a class="dropdown-item" href="{$url('/apartment')}">Load more</a>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
             <div class="card-body">
@@ -126,7 +156,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-auto align-self-center">
-                        <img src="img/logo/fav-icon.png" class="rounded mr-2 " alt="...">
+                        <img src="https://www.kondoku.co.id/frontend/img/logo/fav-icon.png" class="rounded mr-2 " alt="...">
                     </div>
                     <div class="col text-secondary pl-0">
                         <h6 class="text-dark">Join <span class="font-weight-bold">Property Agent</span></h6>
@@ -148,11 +178,11 @@
             </div>
             <div class="card-body px-0 pt-0">
                 <div class="list-group list-group-flush border-top border-color">
-                    <a href="about.html" class="list-group-item list-group-item-action border-color">Apartment</a>
-                    <a href="analytics.html" class="list-group-item list-group-item-action border-color">Unit 1 Bedroom</a>
-                    <a href="bookings.html" class="list-group-item list-group-item-action border-color">Unit 2 Bedroom</a>
-                    <a href="buynow.html" class="list-group-item list-group-item-action border-color">Unit 3 Bedroom</a>
-                    <a href="error.html" class="list-group-item list-group-item-action border-color">Studio</a>
+                    <a href="{$url('/apartment')}" class="list-group-item list-group-item-action border-color">Apartment</a>
+                    <button on:click={()=>searchBedroom(1)} class="list-group-item list-group-item-action border-color">Unit 1 Bedroom</button>
+                    <button on:click={()=>searchBedroom(2)} class="list-group-item list-group-item-action border-color">Unit 2 Bedroom</button>
+                    <button on:click={()=>searchBedroom(3)} class="list-group-item list-group-item-action border-color">Unit 3 Bedroom</button>
+                    <button on:click={()=>searchStudio()} class="list-group-item list-group-item-action border-color">Studio</button>
                     <!-- <a href="pages.html" class="list-group-item list-group-item-action border-color text-primary text-center">More 20+ pages</a> -->
                 </div>
             </div>
@@ -162,7 +192,7 @@
         <div class="card">
             <div class="card-body">
                 <h6 class="text-secondary">KONDOKU</h6>
-                <img src="img/logo/kondoku.png" alt="KONDOKU" class="img-fluid" style="max-height: 60px;">
+                <img src="https://www.kondoku.co.id/frontend/img/logo/kondoku-logo.png" alt="KONDOKU" class="img-fluid" style="max-height: 60px;">
                 <p class="text-secondary mt-3 ml-2">Jalan Pakuwon Indah, Tokan C5, Waterplace Residence, Surabaya Jawa Timur, 60216.</p>
                 <ul class="list-group">
                     <li class="list-group-item text-secondary">

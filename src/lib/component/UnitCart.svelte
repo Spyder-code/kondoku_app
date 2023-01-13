@@ -24,7 +24,7 @@
                         <div class="background" style="background-image: url({app_url+unit.image});">
                             <img src="{app_url+unit.image}" alt="{unit.name}" style="display: none;">
                         </div>
-                        <div class="tag-images-count text-white bg-dark">
+                        <a href="/image/{unit.slug}" class="tag-images-count text-white bg-dark">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon-size-16 vm" viewBox="0 0 512 512">
                                 <title>ionicons-v5-e</title>
                                 <path d="M432,112V96a48.14,48.14,0,0,0-48-48H64A48.14,48.14,0,0,0,16,96V352a48.14,48.14,0,0,0,48,48H80" style="fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px"></path>
@@ -34,7 +34,7 @@
                                 <path d="M265.23,464,383.82,346.27a31,31,0,0,1,41.46-1.87L496,402.91" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path>
                             </svg>
                             <span class="vm">{unit.unit_images.length}</span>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col pl-0">

@@ -1,17 +1,15 @@
 <script lang="ts">
     import BottomMenu from "../../lib/component/BottomMenu.svelte";
     import Layout from "../../lib/component/Layout.svelte";
-    import {params} from '@roxi/routify'
+    import {params, url} from '@roxi/routify'
     import axios from "axios";
     import Loading from "../../lib/component/Loading.svelte";
 
-    let url = import.meta.env.VITE_ENDPOINT;
-    let app_url = import.meta.env.VITE_APP_URL;
+    let endpoint = import.meta.env.VITE_ENDPOINT;
     let unit = null;
-    let unit_rent = null;
     let apartment_facilities = null;
     let unit_facilities = null;
-    axios.get(url+'get-unit/'+$params.name)
+    axios.get(endpoint+'get-unit/'+$params.name)
         .then((res)=>{
             unit = res.data.unit;
             apartment_facilities = res.data.apartment_facilities;
@@ -32,7 +30,7 @@
         <div class="background" style="background-image: url('{unit.image}');">
             <img src="{unit.image}" alt="" style="display: none;">
         </div>
-        <a href="/images?unit_id={unit.id}&unit_name={unit.name}" class="tag-images-count text-white bg-dark " >
+        <a href="/image/{unit.slug}" class="tag-images-count text-white bg-dark " >
             <i class="bi bi-image"></i>
             <span class="vm">{unit.unit_images.length}</span>
         </a>

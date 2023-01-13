@@ -6,6 +6,7 @@
     import { Preferences } from '@capacitor/preferences';
     import ModalLogin from "../../lib/component/ModalLogin.svelte";
     import { onMount } from "svelte";
+    import Loading from "../../lib/component/Loading.svelte";
 
     let url = import.meta.env.VITE_ENDPOINT;
     let checkin = moment($book.checkin).format('DD/MM/YYYY');
@@ -23,6 +24,7 @@
     let selected:number = 3;
     let scOptions = [];
     let isLogin = user?false:true;
+    let isLoading = false;
 
     if ($book.unitId) {
         axios.get(url+'unit/'+$book.unitId)
@@ -54,7 +56,7 @@
     }
 
     const hitung = ()=>{
-        unitPrice = unitRent.price * $book.count;
+        unitPrice = $book.price;
         depositePrice = unitRent.deposite;
         if ($book.duration=='day') {
             total = parseInt(unitPrice) + parseInt(depositePrice);
@@ -79,6 +81,7 @@
     }
 
     const pay = ()=>{
+        isLoading = true;
         let day;
         let sc;
         if ($book.duration=='day') {
@@ -99,7 +102,9 @@
             check_out:moment($book.checkout).format('YYYY-MM-DD'),
             type:day,
             count:$book.count,
-            unit_price:unitPrice,
+            unit_price:unitRent.price,
+            unit_total_price:unitPrice,
+            owner_price:unitPrice,
             unit_deposite_price:depositePrice,
             unit_service_charge_price:sc,
             unit_service_charge_count:scCount,
@@ -123,7 +128,10 @@
 
 </script>
 
-    {#if unitRent && user}
+{#if isLoading}
+    <Loading/>
+{:else}
+{#if unitRent && user}
     <main class="flex-shrink-0">
         <!-- Fixed navbar -->
         <header class="header">
@@ -142,7 +150,7 @@
                 </div>
             </div>
         </header>
-    
+
         <!-- page content start -->
         <div class="container mt-4">
             <div class="row">
@@ -163,7 +171,7 @@
                         <p class="form-text">{user.phone ?? 'xxx xxxx xxxx'}</p>
                         <label class="floating-label">Phone Number</label>
                     </div>
-    
+
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="row">
@@ -304,6 +312,7 @@
         {/if}
         <ModalLogin bind:isActive={isLogin} bind:user={user}/>
     {/if}
+{/if}
 
 <style>
     tr td{

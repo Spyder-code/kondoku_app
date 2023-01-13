@@ -5,7 +5,7 @@
     import moment from "moment";
     import { search } from "../../store";
 
-    export let isActiveModal;
+    export let isActiveModal:any;
     let duration = 'days';
     let apartments = null;
     let apartment = 'all';

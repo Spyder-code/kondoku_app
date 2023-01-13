@@ -4,7 +4,6 @@
     import {params} from '@roxi/routify'
     import axios from "axios";
     import Loading from "../../lib/component/Loading.svelte";
-    import Radio from "../../lib/component/Radio.svelte";
     import Flatpickr from 'svelte-flatpickr'
     import iziToast from 'izitoast'
     import 'izitoast/dist/css/iziToast.css'
@@ -20,8 +19,7 @@
     let url = import.meta.env.VITE_ENDPOINT;
     let unit = null;
     let unitRentId = null;
-    let apartment_facilities = null;
-    let unit_facilities = null;
+    let unitRents = [];
     let checkInOptions = {
         altInput: true,
         altFormat: "d/m/Y",
@@ -41,9 +39,9 @@
     axios.get(url+'get-unit/'+$params.name)
     .then((res)=>{
         unit = res.data.unit;
-        apartment_facilities = res.data.apartment_facilities;
-        unit_facilities = res.data.unit_facilities;
-        unit.unit_rents.map(item=>{
+        let unitRent = res.data.unit_rents;
+        unitRents = unitRent;
+        unitRent.map(item=>{
             if(item.price>0){
                 duration = item.duration;
                 price = item.price;
@@ -105,29 +103,58 @@
                 unit_id: unit.id
             };
 
-            axios.get(url+'check-booking-date',{params})
-            .then((res)=>{
-                let response = res.data;
-                if (response.length>0) {
-                    for (let i = 0; i < response.length; i++) {
-                        const item = response[i];
-                        if(co!=item){
-                            i = response.length
-                            iziToast.show({
-                                title: 'Info!',
-                                theme: 'light',
-                                color: 'red',
-                                position: 'topRight',
-                                message: 'The date already booked!'
-                            });
-                        }else{
-                            date_checkout = co;
-                        }
+            axios.post(url+'check-min-date',{checkin: date_checkin,
+                    type: duration,
+                    count: count,
+                    unit_id: unit.id})
+                .then((res)=>{
+                    let response = res.data;
+                    if(response>0){
+                        count = response
+                        iziToast.show({
+                            title: 'Info!',
+                            theme: 'light',
+                            color: 'red',
+                            position: 'topRight',
+                            message: 'Min book '+response+' day(s)'
+                        });
+                        check_out();
                     }
-                }else{
-                    date_checkout = co;
-                }
+                })
+            axios.post(url+'get-price',{checkin: date_checkin,
+                type: duration,
+                count: count,
+                unit_id: unit.id})
+            .then((res)=>{
+                console.log(res);
+                
+                let response = res.data;
+                price = response
             })
+
+            axios.get(url+'check-booking-date',{params})
+                .then((res)=>{
+                    let response = res.data;
+                    if (response.length>0) {
+                        for (let i = 0; i < response.length; i++) {
+                            const item = response[i];
+                            if(co!=item){
+                                i = response.length
+                                iziToast.show({
+                                    title: 'Info!',
+                                    theme: 'light',
+                                    color: 'red',
+                                    position: 'topRight',
+                                    message: 'The date already booked!'
+                                });
+                            }else{
+                                date_checkout = co;
+                            }
+                        }
+                    }else{
+                        date_checkout = co;
+                    }
+                })
         }
     }
 
@@ -140,6 +167,7 @@
             count:count,
             unitId:unit.id,
             unitRentId:unitRentId,
+            price:price
         });
         $goto('/book/confirm');
     }
@@ -214,7 +242,7 @@
         <div class="background" style="background-image: url('{unit.image}');">
             <img src="{unit.image}" alt="" style="display: none;">
         </div>
-        <a href="/images?unit_id={unit.id}&unit_name={unit.name}" class="tag-images-count text-white bg-dark " >
+        <a href="/image/{unit.slug}" class="tag-images-count text-white bg-dark " >
             <i class="bi bi-image"></i>
             <span class="vm">{unit.unit_images.length}</span>
         </a>
@@ -260,7 +288,7 @@
             </div>
             <div class="card-body border-top border-color">
                 <div class="d-flex justify-content-center rounded" style="gap: 10px;">
-                    {#each unit.unit_rents as rent}
+                    {#each unitRents as rent}
                         {#if rent.price>0}
                             {#if duration == rent.duration}
                                 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -274,6 +302,8 @@
                                 </label>
                             {/if}
                         {/if}
+                        {:else}
+                        <p>Waiting...</p>
                     {/each}
                 </div>
                 <div class="d-flex justify-content-center mt-2" style="gap: 10px;">
@@ -301,7 +331,7 @@
             </div>
             <div class="card-body border-top border-color">
                 <div class="d-flex justify-content-between">
-                    Book {count} {duration}(s) <span> {rupiah(price*count)}</span>
+                    Book {count} {duration}(s) <span> {rupiah(price)}</span>
                 </div>
                 <!-- Button trigger modal -->
                 <button on:click={()=>checkout()} class="mt-4 btn btn-info btn-block btn-lg">

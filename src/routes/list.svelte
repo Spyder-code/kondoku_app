@@ -25,7 +25,7 @@
 
 
     async function fetchData() {
-        if($search.duration || $search.apartment || $search.name){
+        if($search.duration || $search.apartment || $search.name || $search.bedroom || $search.typeStudio){
             let data = {
                 duration:$search.duration,
                 apartment:$search.apartment,
@@ -98,6 +98,13 @@
                 <button type="button" on:click={()=>clearFilter()} class="clear-filter">Clear Filter</button>
             </div>
         {/if}
+        {#if ($search.bedroom || $search.typeStudio) && !$search.duration}
+            <div class="d-flex flex-wrap mb-2" style="gap: 5px;">
+                <span class="filter-item">Type: {$search.typeStudio?'Studio':($search.bedroom>0?$search.bedroom+' BR':'All')}</span>
+                <button type="button" on:click={()=>clearFilter()} class="clear-filter">Clear Filter</button>
+            </div>
+        {/if}
+        <div class="row" style="overflow-x: scroll; max-height: 680px">
         {#if $search.name}
             <div class="d-flex flex-wrap mb-2" style="gap: 5px;">
                 <span class="filter-item">Title : {$search.name}</span>

@@ -7,6 +7,7 @@ export const book = writable({
     duration:null,
     unitId:null,
     unitRentId:null,
+    price:0,
 });
 
 export const search = writable({

@@ -33,6 +33,22 @@ export default {
     },
     {
       "meta": {},
+      "id": "_default_apartment_svelte",
+      "_regex": {},
+      "_paramKeys": {},
+      "name": "apartment",
+      "file": {
+        "path": "src/routes/apartment.svelte",
+        "dir": "src/routes",
+        "base": "apartment.svelte",
+        "ext": ".svelte",
+        "name": "apartment"
+      },
+      "asyncModule": () => import('../src/routes/apartment.svelte'),
+      "children": []
+    },
+    {
+      "meta": {},
       "id": "_default_book",
       "_regex": {},
       "_paramKeys": {},
@@ -129,6 +145,41 @@ export default {
       },
       "asyncModule": () => import('../src/routes/home.svelte'),
       "children": []
+    },
+    {
+      "meta": {},
+      "id": "_default_image",
+      "_regex": {},
+      "_paramKeys": {},
+      "name": "image",
+      "module": false,
+      "file": {
+        "path": "src/routes/image",
+        "dir": "src/routes",
+        "base": "image",
+        "ext": "",
+        "name": "image"
+      },
+      "children": [
+        {
+          "meta": {
+            "dynamic": true
+          },
+          "id": "_default_image__name__svelte",
+          "_regex": {},
+          "_paramKeys": {},
+          "name": "[name]",
+          "file": {
+            "path": "src/routes/image/[name].svelte",
+            "dir": "src/routes/image",
+            "base": "[name].svelte",
+            "ext": ".svelte",
+            "name": "[name]"
+          },
+          "asyncModule": () => import('../src/routes/image/[name].svelte'),
+          "children": []
+        }
+      ]
     },
     {
       "meta": {},
