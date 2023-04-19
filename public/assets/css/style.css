@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
+
+.text-theme{
+    color: #f4b924 !important;
+}
+.bg-theme{
+    color: #CEA02F !important;
+}
+
+body{
+  width: 100%;
+  height: 100%;
+  background-color: blanchedalmond;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+main{
+  background-color: #FFF9F3;
+  /* height: 100vh; */
+  /* position: relative; */
+  /* z-index: 99; */
+  color: black;
+  /* padding-bottom: 60px; */
+  margin-bottom: 60px;
+}
+
+header{
+  height: 260px;
+}
+
+.bg-gold{
+  /* height: 290px;  */
+  width:100%; 
+  background: linear-gradient(180deg, #CC9933 0%, #FFFF99 28.95%, #CC9933 43.68%, #FFFF99 65.12%, #d6ad4770 93.23%, #cc993300 100%)!important
+}
+
+.btn-icon{
+  border: none;
+  outline: none;
+  border-radius:100%;
+  width: 35px;
+  background: rgba(255, 255, 255, 0.5);
+  font-size: .8rem;
+}
+
+.btn-no-attr{
+  border: none;
+  outline: none;
+  border-radius:10px;
+  padding: 5px 35px;
+  border: 1px solid white;  
+  color: white;
+  width: 100%;
+  font-size: .8rem;
+}
+
+.form-control{
+  box-shadow: none !important;
+  outline: none;
+  border-radius: 0px !important;
+  border: none;
+}
+
+.btn-search{
+  border: white 1px solid;
+  outline: none;
+  width: 50px;
+  background-color: white;
+}
+
+.banner{
+  height: 185px;
+  background-image: url('assets/banner.png');
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+.swiper-banner {
+  width: 100%;
+  height: 200px;
+}
+
+.swiper-button-next:after, .swiper-rtl .swiper-button-prev:after, .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after{
+  font-size: 1rem !important;
+  color: white;
+  font-weight: bold;
+}
+
+section{
+  margin: 5px 0px;
+  padding: 10px;
+}
+
+.img-icon{
+  height: 60px;
+  width: 60px;
+  border-radius: 10px;
+}
+
+.apartment-icon{
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+span.title{
+  color: #CEA02F;
+  font-size: .7rem;
+}
+
+.flash-sale{
+  background: linear-gradient(223.79deg, #cc9933 -12.62%, rgba(255, 255, 149, 0.661) -1.11%, #CC9933 13.57%, rgba(255, 255, 153, 0.2) 36.09%, rgba(214, 173, 71, 0.1) 53.19%, #cc993391 82.42%), url('assets/bg.png');
+  /* background-image: url('assets/bg.png'); */
+  height: 320px;
+}
+
+.card-listing{
+  height: 238px;
+  min-width: 180px;
+  max-width: 170px;
+  background: #fff;
+}
+
+
+.card-listing img{
+  height: 117px;
+  width: 100%;
+}
+
+.card-background{
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+a{
+  text-decoration: none;
+  text-align: justify;
+  /* line-height: 0px; */
+  font-size: .8rem;
+  word-wrap: break-word;
+  white-space: normal;
+  text-overflow: ellipsis;
+}
+
+.price{
+  font-size: .9rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.select-price{
+  padding: 3px;
+  border: none;
+  width: 100%;
+  font-size: .7rem;
+  color: #f4b924;
+  background-color: transparent;
+}
+
+section.info-footer{
+  height: 340px;
+  color: white;
+  background-image: url('https://www.kondoku.co.id/image/bg-footer.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 99999999;
+  background-image: url('assets/gold.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.footer .app{
+    position: relative;
+    top: -18px;
+    background-image: url('assets/gold.png');
+    /* background-position-x: -8px;
+    background-position-y: -20px; */
+    background-position: center;
+    padding: 10px 15px;
+    border-radius: 100%;
+    box-shadow: rgb(0, 0, 0) 0px 20px 30px -10px;
+    color: white;
+    font-size: 1.4rem !important;
+}

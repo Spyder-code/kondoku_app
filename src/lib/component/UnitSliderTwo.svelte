@@ -1,12 +1,13 @@
 <script lang="ts">
     export let units;
-    export let url;
-    // Import Swiper Svelte components
     import { Swiper, SwiperSlide } from 'swiper/svelte';
-    // Import Swiper styles
     import 'swiper/css';
+
+    let url = import.meta.env.VITE_ENDPOINT;
+    let app_url = import.meta.env.VITE_APP_URL;
+
     function strlimit(text, count){
-        return text.slice(0, count) + (text.length > count ? "..." : "");
+        return text.slice(0, count).toLocaleUpperCase() + (text.length > count ? "..." : "");
     }
     const rupiah = (number)=>{
         return new Intl.NumberFormat("id-ID", {
@@ -16,8 +17,101 @@
     }
 </script>
 
-    <!-- Swiper -->
-    <Swiper
+<Swiper
+    spaceBetween={0}
+    slidesPerView='auto'
+    pagination={false}>
+    {#each units as unit}
+        {#if unit.image}
+            <SwiperSlide style="width:185px">
+                <div class="card-listing">
+                  <img src="{app_url+unit.image}" class="img-fluid" alt="{unit.name}"/>
+                  <div class="px-2 lh-1 mt-2 text-break">
+                    <div class="unit-name" style="height: 50px;">
+                      <a href="/property/{unit.slug}" class="text-secondary">{strlimit(unit.name,50)}</a>
+                    </div>
+                    <div class="text-warning mt-2 gap-1 d-flex" style="font-size: .7rem;">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <div class="d-flex gap-2 text-secondary">
+                        <span>|</span>
+                        <span style="font-size: .8rem;"><i class="fas fa-bathtub"></i> {unit.bathroom}</span>
+                        <span style="font-size: .8rem;"><i class="fas fa-bed"></i> {unit.bedroom}</span>
+                      </div>
+                    </div>
+                    <div class="price mt-3">
+                      <div>
+                        <span class="text-theme" style="font-size: .7rem;">Rp.</span>
+                        <span class="text-theme">100.000</span>
+                        <span class="text-theme" style="font-size: .7rem;">/Monthly</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<!-- 
+                <div class="card product-card-large">
+                    <div class="card-body p-0">
+                        <div class="product-image-large">
+                            <div class="background">
+                                <img src="{app_url+unit.image}" alt="{unit.name}" style="height: 230px; width:100%;">
+                            </div>
+                            <a href="/image/{unit.slug}" class="tag-images-count text-white bg-dark">
+                                <svg xmlns='http://www.w3.org/2000/svg' class="icon-size-16 vm" viewBox='0 0 512 512'>
+                                    <title>ionicons-v5-e</title>
+                                    <path d='M432,112V96a48.14,48.14,0,0,0-48-48H64A48.14,48.14,0,0,0,16,96V352a48.14,48.14,0,0,0,48,48H80' style='fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px' />
+                                    <rect x='96' y='128' width='400' height='336' rx='45.99' ry='45.99' style='fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px' />
+                                    <ellipse cx='372.92' cy='219.64' rx='30.77' ry='30.55' style='fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:32px' />
+                                    <path d='M342.15,372.17,255,285.78a30.93,30.93,0,0,0-42.18-1.21L96,387.64' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px' />
+                                    <path d='M265.23,464,383.82,346.27a31,31,0,0,1,41.46-1.87L496,402.91' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px' />
+                                </svg>
+                                <span class="vm">{unit.unit_images.length}</span>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="property/{unit.slug}" class="card-footer">
+                        <div class="row">
+                            <div class="col">
+                                <p class="text-dark" style="font-size: .8rem;">{ strlimit(unit.name,50) }</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p class="small vm">
+                                    <span class=" text-secondary">{unit.large} m<sup>2</sup></span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon-size-12 vm" viewBox="0 0 24 24">
+                                        <path d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M0 0h24v24H0z" fill="none" />
+                                        <path fill="#FFD500" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
+                                    <span class=" text-secondary">| {unit.apartment}</span>
+                                </p>
+                            </div>
+                            <div class="col-auto">
+                                <p class="small text-primary">For Rent</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            {#each unit.unit_rent as rent}
+                                {#if rent.price!=0}
+                                    <div class="col-auto">
+                                        <p class="small text-dark">Rp. {rent.price_short} /{rent.duration}</p>
+                                    </div>
+                                {/if}
+                            {/each}
+                        </div>
+                    </a>
+                </div> -->
+            </SwiperSlide>
+        {/if}
+    {:else}
+    <div></div>
+    {/each}
+</Swiper>
+
+    <!-- <Swiper
         spaceBetween={0}
         slidesPerView='auto'
         pagination={false}
@@ -92,7 +186,7 @@
                         <div class="card-footer border-top border-color">
                             <div class="row">
                                 <div class="col-auto text-dark text-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M32 32c17.7 0 32 14.3 32 32V320H288V160c0-17.7 14.3-32 32-32H544c53 0 96 43 96 96V448c0 17.7-14.3 32-32 32s-32-14.3-32-32V416H352 320 64v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V64C0 46.3 14.3 32 32 32zM176 288c-44.2 0-80-35.8-80-80s35.8-80 80-80s80 35.8 80 80s-35.8 80-80 80z"/></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M32 32c17.7 0 32 14.3 32 32V320H288V160c0-17.7 14.3-32 32-32H544c53 0 96 43 96 96V448c0 17.7-14.3 32-32 32s-32-14.3-32-32V416H352 320 64v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V64C0 46.3 14.3 32 32 32zM176 288c-44.2 0-80-35.8-80-80s35.8-80 80-80s80 35.8 80 80s-35.8 80-80 80z"/></svg>
                                     <p class="small"><small>Bedroom</small></p>
                                 </div>
                                 <div class="col-auto text-dark text-center pl-0">
@@ -141,4 +235,4 @@
                 {/if}
             {/each}
         {/each}
-    </Swiper>
+    </Swiper> -->

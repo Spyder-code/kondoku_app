@@ -1,12 +1,16 @@
 <script lang="ts">
     import UnitSliderOne from '../lib/component/UnitSliderOne.svelte';
+    import UnitSliderTwo from '../lib/component/UnitSliderTwo.svelte';
     import BottomMenu from '../lib/component/BottomMenu.svelte';
     import Header from '../lib/component/Header.svelte';
     import Apartment from '../lib/component/Apartment.svelte';
     import axios from 'axios';
-    import { Preferences } from '@capacitor/preferences';
+    import { Preferences } from '@capacitor/preferences'; 
     import { search } from '../store';
     import { goto, url } from "@roxi/routify";
+    import Banner from '../lib/component/Banner.svelte';
+    import ApartmentSlider from '../lib/component/ApartmentSlider.svelte';
+    import UnitList from '..//lib/component/UnitList.svelte';
 
     let endpoint = import.meta.env.VITE_ENDPOINT;
     let app_url = import.meta.env.VITE_APP_URL;
@@ -77,10 +81,135 @@
     
 </script>
 
-<main class="flex-shrink-0">
-    <Header/>
+<main>
+  <header class="bg-gold">
+    <div class="d-flex gap-2 px-2 py-1">
+      <div class="btn-group w-100 mt-1">
+        <input type="text" name="" id="" class="form-control text-theme">
+        <button class="btn-search"><i class="fas fa-search"></i></button>
+      </div>
+      <button class="btn-icon mt-2">
+        <i class="fas fa-user"></i>
+      </button>
+      <button class="btn-icon mt-2">
+        <i class="fas fa-bell"></i>
+      </button>
+    </div>
+    <Banner/>
+  </header>
 
-    <!-- page content start -->
+  <section>
+    <div class="d-flex gap-2 flex-wrap justify-content-center">
+      <Apartment/>
+    </div>
+  </section>
+
+  <section class="flash-sale">
+    <span class="fw-bold">Flash Rent</span>
+    <div style="height: 275px;">
+      <UnitSliderTwo units={units1}/>
+    </div>
+  </section>
+
+  <section>
+    <div class="mt-1">
+      <ApartmentSlider/>
+    </div>
+  </section>
+
+  <section class="container-fluid">
+    <div class="row" style="overflow-x: scroll; max-height: 680px">
+      <UnitList max_page={5}/>
+    </div>
+  </section>
+
+  <section class="info-footer">
+    <div class="px-3">
+      <img src="https://www.kondoku.co.id/frontend/img/logo/Logo Kondoku one click.png" alt="LOGO" class="img-fluid" style="height: 60px;">
+      <div class="mt-3">
+        <p style="font-size: .8rem;">Jalan Pakuwon Indah, Tokan C5, Waterplace Residence, Surabaya Jawa Timur, 60216.</p>
+      </div>
+      <div class="d-flex gap-3">
+        <a class="text-white" style="font-size: 1.2rem;">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a class="text-white" style="font-size: 1.2rem;">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a class="text-white" style="font-size: 1.2rem;">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a class="text-white" style="font-size: 1.2rem;">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </div>
+      <div class="card px-3 mt-3" style="background-color: rgb(255, 255, 255, .3);">
+        <table class="tables" style="font-size: .8rem; color: azure;">
+          <tr>
+            <td class="py-2"><i class="bi bi-telephone"></i> (031) 7393240</td>
+            <td style="text-align: right;">
+              <div style="width:100px; margin-left:50px" class="btn-no-attr text-center">
+                <a href="tel:0317393240" class="text-white">Call</a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="py-2"><i class="fab fa-whatsapp"></i> 0812 3111 1179</td>
+            <td style="text-align: right;">
+              <div style="width:100px; margin-left:50px" class="btn-no-attr text-center">
+                <a href="https://wa.me/6281231111179" class="text-white">Call</a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="py-2"><i class="bi bi-envelope"></i> cs@kondoku.co.id</td>
+            <td style="text-align: right;">
+              <div style="width:100px; margin-left:50px" class="btn-no-attr text-center">
+                <a href="mailto:cs@kondoku.co.id" class="text-white">Email</a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="py-2"><i class="bi bi-map"></i> Maps</td>
+            <td style="text-align: right;">
+              <div style="width:100px; margin-left:50px" class="btn-no-attr text-center">
+                <a href="https://goo.gl/maps/zrDn3peFZe5FmAWo8" class="text-white">Open</a>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<footer class="">
+  <div class="footer px-4 py-2 d-flex justify-content-between">
+    <a href="" class="text-center text-white" style="text-shadow: 4px 4px 4px rgba(29, 29, 29, 0.25);">
+      <i class="fas fa-home"></i><br>
+      <span>Home</span>
+    </a>
+    <a href="" class="text-center text-dark" style="text-shadow: 4px 4px 4px rgba(29, 29, 29, 0.25);">
+      <i class="fas fa-building"></i><br>
+      <span>Unit</span>
+    </a>
+    <a href="" class="text-center text-dark app">
+      <i class="fas fa-calendar-days"></i><br>
+    </a>
+    <a href="" class="text-center text-dark" style="text-shadow: 4px 4px 4px rgba(29, 29, 29, 0.25);">
+      <i class="fas fa-bag-shopping"></i><br>
+      <span>Cart</span>
+    </a>
+    <a href="" class="text-center text-dark" style="text-shadow: 4px 4px 4px rgba(29, 29, 29, 0.25);">
+      <i class="fas fa-user"></i><br>
+      <span>Account</span>
+    </a>
+  </div>
+</footer>
+
+<!-- <main class="flex-shrink-0">
+    <Header/>
     <div class="container mt-4">
         <div class="form-group mb-0">
             <div class="row">
@@ -137,12 +266,10 @@
     </div>
 
     <div class="container-fluid px-0 mt-4">
-        <!-- Swiper -->
         <UnitSliderOne units={units} app_url={app_url}/>
     </div>
 
     <div class="container-fluid px-0 mt-2">
-        <!-- Swiper -->
         <UnitSliderOne units={units1} app_url={app_url}/>
     </div>
 
@@ -150,7 +277,6 @@
         <a class="btn btn-sm btn-primary px-4" href="/list" style="width:200px">Load More</a>
     </div>
 
-    <!-- PWA add to home display -->
     <div class="container mt-4">
         <div class="card" id="addtodevice">               
             <div class="card-body">
@@ -167,7 +293,7 @@
             </div>
         </div>
     </div>
-    <!-- PWA add to home display -->
+
     <div class="container mt-4">
         <div class="card">
             <div class="card-header">
@@ -183,7 +309,6 @@
                     <button on:click={()=>searchBedroom(2)} class="list-group-item list-group-item-action border-color">Unit 2 Bedroom</button>
                     <button on:click={()=>searchBedroom(3)} class="list-group-item list-group-item-action border-color">Unit 3 Bedroom</button>
                     <button on:click={()=>searchStudio()} class="list-group-item list-group-item-action border-color">Studio</button>
-                    <!-- <a href="pages.html" class="list-group-item list-group-item-action border-color text-primary text-center">More 20+ pages</a> -->
                 </div>
             </div>
         </div>
@@ -225,8 +350,7 @@
     </div>
 </main>
 
-<!-- footer -->
-<BottomMenu/>
+<BottomMenu/> -->
 
 <!-- filter menu -->
 <!-- <div class="filter">

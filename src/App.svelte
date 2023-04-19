@@ -12,8 +12,8 @@
   });
 </script>
 
+<Router {router} />
 {#if loaded}
-  <Router {router} />
 {:else}
   <Loading/>
 {/if}
