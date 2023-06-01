@@ -140,7 +140,6 @@ header{
 
 .banner{
   height: 185px;
-  background-image: url('assets/banner.png');
   width: 100%;
   background-position: center;
   background-size: cover;

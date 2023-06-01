@@ -32,20 +32,19 @@
             .then((res)=>{
                 data = res.data
                 count = data.length
-                console.log(data);
             })
     }
     getUser();
 </script>
 <!-- <HeaderTitle title="My Cart" /> -->
-<div class="container-fluid mt-3">
+<div class="container-fluid mt-3" style="padding-bottom: 100px;">
     {#if !user}
         <img src="img/empty.png" alt="empty" class="img-fluid">
         <button on:click={()=>login()} class="text-center text-white btn btn-sm btn-warning w-100">Login</button>
         <ModalLogin bind:isActive={isLogin} bind:user={user}/>
     {:else}
         <p class="text-secondary text-center">
-            <span class="text-dark">{count} Cart</span> found<br>
+            <span class="text-dark">{count} Transaction</span> found<br>
         </p>
         {#each data as booking}
             <UnitCart bind:booking={booking} bind:transaction={booking.transaction} bind:unit={booking.unit}>

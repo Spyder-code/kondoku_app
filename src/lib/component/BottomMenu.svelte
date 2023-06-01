@@ -30,7 +30,7 @@
       </a>
       <a href="{$url('/cart')}" class="text-center {$isActive('/cart')?'text-theme':''}">
         <i class="bi bi-bag"></i>
-        <div style="font-size: .6rem;">Cart</div>
+        <div style="font-size: .6rem;">Transaction</div>
       </a>
       <a href="{$url('/account')}" class="text-center {$isActive('/account')?'text-theme':''}">
         <i class="bi bi-person"></i>

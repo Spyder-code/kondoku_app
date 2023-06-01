@@ -14,7 +14,6 @@
   async function fetchData() {
     const response = await fetch(`${url}unit?page=${page}`);
     newBatch = await response.json();
-    console.log(newBatch);
   };
 
   onMount(() => {
