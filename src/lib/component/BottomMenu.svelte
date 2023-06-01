@@ -10,7 +10,36 @@
     }
 </script>
 
-<footer class="footer">
+<footer class="">
+    <div class="footer px-4 py-2 d-flex justify-content-between">
+      <a href="{$url('/home')}" class="text-center {$isActive('/home')?'text-theme':''}">
+        <i class="bi bi-house"></i>
+        <div style="font-size: .6rem;">Home</div>
+      </a>
+      <!-- <a href="{$url('/home')}" class="text-center {$isActive('/home')?'text-theme':''}">
+        <i class="bi bi-heart"></i>
+        <div style="font-size: .6rem;">Favorite</div>
+      </a> -->
+      <a href="{$url('/list')}" class="text-center {$isActive('/list')?'text-theme':''}">
+        <i class="bi bi-binoculars"></i>
+        <div style="font-size: .6rem;">Units</div>
+      </a>
+      <a href="{$url('/filter')}" class="text-center {$isActive('/filter')?'text-theme':''}">
+        <i class="bi bi-calendar-date"></i>
+        <div style="font-size: .6rem;">Rent</div>
+      </a>
+      <a href="{$url('/cart')}" class="text-center {$isActive('/cart')?'text-theme':''}">
+        <i class="bi bi-bag"></i>
+        <div style="font-size: .6rem;">Cart</div>
+      </a>
+      <a href="{$url('/account')}" class="text-center {$isActive('/account')?'text-theme':''}">
+        <i class="bi bi-person"></i>
+        <div style="font-size: .6rem;">Account</div>
+      </a>
+    </div>
+  </footer>
+
+<!-- <footer class="footer">
     <div class="container">
         <ul class="nav nav-pills nav-justified">
             <li class="nav-item">
@@ -37,13 +66,13 @@
                     </span>
                 </button>
             </li>
-            <!-- <li class="nav-item centerbutton">
+            <li class="nav-item centerbutton">
                 <button on:click={()=>changeIsModalSearch()} type="button" class="nav-link" data-toggle="modal" data-target="#menumodal" id="centermenubtn" style="outline: none;">
                     <span class="theme-radial-gradient">
                         <i class="bi bi-grid" style="font-size:22px;"></i>
                     </span>
                 </button>
-            </li> -->
+            </li>
 
             <li class="nav-item">
                 <a class="nav-link {$isActive('/cart')?'active':''}" href="{$url('/cart')}">
@@ -65,4 +94,4 @@
     </div>
 </footer>
 
-<ModalSearch bind:isActiveModal={isModalSearch}/>
+<ModalSearch bind:isActiveModal={isModalSearch}/> -->

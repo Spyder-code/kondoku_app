@@ -7,6 +7,7 @@
     import ModalLogin from "../../lib/component/ModalLogin.svelte";
     import { onMount } from "svelte";
     import Loading from "../../lib/component/Loading.svelte";
+  import HeaderTitle from "../../lib/component/HeaderTitle.svelte";
 
     let url = import.meta.env.VITE_ENDPOINT;
     let checkin = moment($book.checkin).format('DD/MM/YYYY');
@@ -30,6 +31,8 @@
         axios.get(url+'unit/'+$book.unitId)
         .then((res)=>{
             unit=res.data.data;
+            console.log(unit);
+            
             axios.get(url+'unit-rent/'+$book.unitRentId)
             .then((res)=>{
                 unitRent=res.data.data;
@@ -131,185 +134,246 @@
 {#if isLoading}
     <Loading/>
 {:else}
-{#if unitRent && user}
-    <main class="flex-shrink-0">
-        <!-- Fixed navbar -->
-        <header class="header">
-            <div class="row">
-                <div class="col-auto px-0">
-                    <a href="../book/{unit.slug}" class="btn btn-link text-dark">
-                        <svg xmlns='http://www.w3.org/2000/svg' class="icon-size-24" viewBox='0 0 512 512'>
-                            <title>ionicons-v5-a</title>
-                            <polyline points='244 400 100 256 244 112' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:48px' />
-                            <line x1='120' y1='256' x2='412' y2='256' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:48px' />
-                        </svg>
-                    </a>
-                </div>
-                <div class="text-left col align-self-center">
-                    <h5>Book room</h5>
-                </div>
-            </div>
-        </header>
-
-        <!-- page content start -->
-        <div class="container mt-4">
-            <div class="row">
-                <div class="col-12 col-md-6">
-                    <div class="form-group floating-form-group active">
-                        <p class="form-text">{user.name}</p>
-                        <label class="floating-label">Name</label>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6">
-                    <div class="form-group floating-form-group active">
-                        <p class="form-text">{user.email}</p>
-                        <label class="floating-label">Email Address</label>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6">
-                    <div class="form-group floating-form-group active">
-                        <p class="form-text">{user.phone ?? 'xxx xxxx xxxx'}</p>
-                        <label class="floating-label">Phone Number</label>
-                    </div>
-
-                </div>
-                <div class="col-12 col-md-6">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="form-group floating-form-group active">
-                                <p class="form-text">{checkin}</p>
-                                <label class="floating-label">Checkin</label>
+{#if unit}
+<HeaderTitle title="Payment Confirm" back="/book/{unit.slug}"/>
+{/if}
+    {#if unitRent && user}
+        <main>
+            <div class="container bg-white mt-4 pb-5" style="border-top-right-radius: 20px; border-top-left-radius: 20px; box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
+                <div class="row py-3">
+                    <div class="col-12">
+                        <span class="text-theme"><i class="bi bi-info-circle"></i> Apartment Information</span>
+                        <hr>
+                        {#if unit}
+                            <h6 style="font-size: .9rem;">{unit?unit.name:'-'}</h6>
+                            <p class="small vm" style="font-size: .7rem;">
+                                <span class=" text-secondary">{unit.large} m<sup>2</sup></span>
+                                <span class="text-warning"><i class="bi bi-star-fill"></i></span>
+                                <span class=" text-secondary">| {unit.apartment}</span>
+                            </p>
+                            <div class="row justify-content-center">
+                                <div class="col-auto text-dark text-center pl-0">
+                                    <i class="bi bi-water"></i>
+                                    <p class="small"><small>Poll</small></p>
+                                </div>
+                                <div class="col-auto text-dark text-center pl-0">
+                                    <i class="bi bi-flower1"></i>
+                                    <p class="small"><small>Garden</small></p>
+                                </div>
+                                <div class="col-auto text-dark text-center pl-0">
+                                    <i class="bi bi-box"></i>
+                                    <p class="small"><small>{unit.furnish_type}</small></p>
+                                </div>
+                                <div class="col-auto text-dark text-center pl-0">
+                                    <i class="fas fa-bath"></i>
+                                    <p class="small"><small>{unit.bathroom} Bathroom</small></p>
+                                </div>
+                                <div class="col-auto text-dark text-center pl-0">
+                                    <i class="fas fa-bed"></i>
+                                    <p class="small"><small>{unit.bathroom} Bedroom</small></p>
+                                </div>
+                                <div class="col-auto text-dark text-center pl-0">
+                                    <i class="fas fa-calendar-check"></i>
+                                    <p class="small"><small>Checkin: {checkin}</small></p>
+                                </div>
+                                <div class="col-auto text-dark text-center pl-0">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <p class="small"><small>Checkout: {checkout}</small></p>
+                                </div>
                             </div>
+                        {/if}
+                    </div>
+                </div>
+                <span class="text-theme"><i class="bi bi-info-circle"></i> Account Information</span>
+                <hr>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="form-group floating-form-group active">
+                            <label class="floating-label">Name</label>
+                            <p class="form-text">{user.name}</p>
                         </div>
-                        <div class="col-6">
-                            <div class="form-group floating-form-group active">
-                                <p class="form-text">{checkout}</p>
-                                <label class="floating-label">Checkout</label>
-                            </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group floating-form-group active">
+                            <label class="floating-label">Email Address</label>
+                            <p class="form-text">{user.email}</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group floating-form-group active">
+                            <label class="floating-label">Phone Number</label>
+                            <p class="form-text">{user.phone ?? 'xxx xxxx xxxx'}</p>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-12 col-md-6 col-lg-4 mx-auto">  
-                    <div class="card text-center text-white bg-info-gradient mb-4">
-                        <div class="card-body-wrap">
-                            <div class="card-body">{ unit?unit.name:'Loading...' }</div>
+                <span class="text-theme"><i class="bi bi-info-circle"></i> Transaction</span>
+                <hr>
+                <div class="row mt-3">
+                    <div class="col-12 col-md-6 col-lg-4 mx-auto">  
+                        {#if $book.duration=='year'}
+                        <div class="form-group">
+                            <label class="floating-label" style="font-size: .8rem;">Service Charge Pay</label>
+                            <select class="w-100 py-1 px-3" style="font-size: .8rem;" bind:value={selected} on:change={() => {scCount=selected; hitung()}}>
+                                {#each scOptions as item}
+                                    <option value="{item.value}">{item.label}</option>
+                                {:else}
+                                    Loading...
+                                {/each}
+                            </select>
+                        </div>
+                        {/if}
+                        
+                        <table class="table no-border mb-0">
+                            <tbody class="font-weight-medium">
+                                <tr>
+                                    <td>Book {$book.count} {$book.duration}(s)</td>
+                                    <td class="text-right">{ rupiah(unitPrice) }</td>
+                                </tr>
+                                <tr>
+                                    <td>Deposite</td>
+                                    <td class="text-right">{ rupiah(depositePrice) }</td>
+                                </tr>
+                                {#if $book.duration!='day'}
+                                <tr>
+                                    <td>Service Charge {scCount} month(s) </td>
+                                    <td class="text-right">{ rupiah(scPrice) }</td>
+                                </tr>
+                                {/if}
+                                {#if $book.duration=='year'}
+                                <tr>
+                                    <td>PBB </td>
+                                    <td class="text-right">{ rupiah(pbbPrice) }</td>
+                                </tr>
+                                {/if}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>Total</td>
+                                    <td class="text-right">{ rupiah(total) }</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <div class="bottom-fix">
+                    <div class="d-flex gap-2 justify-content-center">
+                        <div>
+                            <button on:click={()=>pay()} class="text-center text-white btn btn-sm btn-theme" style="width:250px">Pay Now</button>
                         </div>
                     </div>
-                    
-                    {#if $book.duration=='year'}
-                    <div class="form-group">
-                        <label class="floating-label">Service Charge Pay</label>
-                        <select class="form-control" bind:value={selected} on:change={() => {scCount=selected; hitung()}}>
-                            {#each scOptions as item}
-                                <option value="{item.value}">{item.label}</option>
-                            {:else}
-                                Loading...
-                            {/each}
-                        </select>
-                    </div>
-                    {/if}
-                    
-                    <table class="table no-border mb-0">
-                        <tbody class="font-weight-medium">
-                            <tr>
-                                <td>Book {$book.count} {$book.duration}(s)</td>
-                                <td class="text-right">{ rupiah(unitPrice) }</td>
-                            </tr>
-                            <tr>
-                                <td>Deposite</td>
-                                <td class="text-right">{ rupiah(depositePrice) }</td>
-                            </tr>
-                            {#if $book.duration!='day'}
-                            <tr>
-                                <td>Service Charge {scCount} month(s) </td>
-                                <td class="text-right">{ rupiah(scPrice) }</td>
-                            </tr>
-                            {/if}
-                            {#if $book.duration=='year'}
-                            <tr>
-                                <td>PBB </td>
-                                <td class="text-right">{ rupiah(pbbPrice) }</td>
-                            </tr>
-                            {/if}
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td>Total</td>
-                                <td class="text-right">{ rupiah(total) }</td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
+                </div> 
             </div>
-            <div class="row my-4">
-                <div class="col-12 col-md-6 col-lg-4 mx-auto">                    
-                    <button on:click={()=>pay()} class="btn btn-block btn-danger btn-lg">Pay Now</button>
-                </div>
-            </div>
-        </div>
-    </main>
+        </main>
     {:else}
-        <div class="container mt-4">
-            <div class="row mt-3">
-                <div class="col-12 col-md-6 col-lg-4 mx-auto">  
-                    <div class="card text-center text-white bg-info-gradient mb-4">
-                        <div class="card-body-wrap">
-                            <div class="card-body">{ unit?unit.name:'Loading...' }</div>
+        <main>
+            <div class="container mt-4 bg-white pb-5" style="border-top-right-radius: 20px; border-top-left-radius: 20px; box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
+                <div class="row py-3">
+                    <div class="col-12">
+                        <span class="text-theme"><i class="bi bi-info-circle"></i> Apartment Information</span>
+                        <hr>
+                        {#if unit}
+                            <h6 style="font-size: .9rem;">{unit?unit.name:'-'}</h6>
+                            <p class="small vm" style="font-size: .7rem;">
+                                <span class=" text-secondary">{unit.large} m<sup>2</sup></span>
+                                <span class="text-warning"><i class="bi bi-star-fill"></i></span>
+                                <span class=" text-secondary">| {unit.apartment}</span>
+                            </p>
+                            <div class="row justify-content-center">
+                                <div class="col-auto text-dark text-center pl-0">
+                                    <i class="bi bi-water"></i>
+                                    <p class="small"><small>Poll</small></p>
+                                </div>
+                                <div class="col-auto text-dark text-center pl-0">
+                                    <i class="bi bi-flower1"></i>
+                                    <p class="small"><small>Garden</small></p>
+                                </div>
+                                <div class="col-auto text-dark text-center pl-0">
+                                    <i class="bi bi-box"></i>
+                                    <p class="small"><small>{unit.furnish_type}</small></p>
+                                </div>
+                                <div class="col-auto text-dark text-center pl-0">
+                                    <i class="fas fa-bath"></i>
+                                    <p class="small"><small>{unit.bathroom} Bathroom</small></p>
+                                </div>
+                                <div class="col-auto text-dark text-center pl-0">
+                                    <i class="fas fa-bed"></i>
+                                    <p class="small"><small>{unit.bathroom} Bedroom</small></p>
+                                </div>
+                                <div class="col-auto text-dark text-center pl-0">
+                                    <i class="fas fa-calendar-check"></i>
+                                    <p class="small"><small>Checkin: {checkin}</small></p>
+                                </div>
+                                <div class="col-auto text-dark text-center pl-0">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <p class="small"><small>Checkout: {checkout}</small></p>
+                                </div>
+                            </div>
+                        {/if}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4 mx-auto">  
+                        <span class="text-theme"><i class="bi bi-info-circle"></i> Transaction</span>
+                        <hr>    
+                        {#if $book.duration=='year'}
+                        <div class="py-2">
+                            <label class="floating-label" style="font-size: .8rem;">Service Charge Pay</label>
+                            <select class="w-100 py-1 px-3" style="font-size: .8rem;" bind:value={selected} on:change={() => {scCount=selected; hitung()}}>
+                                {#each scOptions as item}
+                                    <option value="{item.value}">{item.label}</option>
+                                {:else}
+                                    Loading...
+                                {/each}
+                            </select>
                         </div>
+                        {/if}
+                        
+                        <table class="table no-border mb-0">
+                            <tbody class="font-weight-medium">
+                                <tr>
+                                    <td>Book {$book.count} {$book.duration}(s)</td>
+                                    <td class="text-right">{ rupiah(unitPrice) }</td>
+                                </tr>
+                                <tr>
+                                    <td>Deposite</td>
+                                    <td class="text-right">{ rupiah(depositePrice) }</td>
+                                </tr>
+                                {#if $book.duration!='day'}
+                                <tr>
+                                    <td>Service Charge {scCount} month(s) </td>
+                                    <td class="text-right">{ rupiah(scPrice) }</td>
+                                </tr>
+                                {/if}
+                                {#if $book.duration=='year'}
+                                <tr>
+                                    <td>PBB </td>
+                                    <td class="text-right">{ rupiah(pbbPrice) }</td>
+                                </tr>
+                                {/if}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>Total</td>
+                                    <td class="text-right">{ rupiah(total) }</td>
+                                </tr>
+                            </tfoot>
+                        </table>
                     </div>
-                    
-                    {#if $book.duration=='year'}
-                    <div class="form-group">
-                        <label class="floating-label">Service Charge Pay</label>
-                        <select class="form-control" bind:value={selected} on:change={() => {scCount=selected; hitung()}}>
-                            {#each scOptions as item}
-                                <option value="{item.value}">{item.label}</option>
-                            {:else}
-                                Loading...
-                            {/each}
-                        </select>
-                    </div>
-                    {/if}
-                    
-                    <table class="table no-border mb-0">
-                        <tbody class="font-weight-medium">
-                            <tr>
-                                <td>Book {$book.count} {$book.duration}(s)</td>
-                                <td class="text-right">{ rupiah(unitPrice) }</td>
-                            </tr>
-                            <tr>
-                                <td>Deposite</td>
-                                <td class="text-right">{ rupiah(depositePrice) }</td>
-                            </tr>
-                            {#if $book.duration!='day'}
-                            <tr>
-                                <td>Service Charge {scCount} month(s) </td>
-                                <td class="text-right">{ rupiah(scPrice) }</td>
-                            </tr>
-                            {/if}
-                            {#if $book.duration=='year'}
-                            <tr>
-                                <td>PBB </td>
-                                <td class="text-right">{ rupiah(pbbPrice) }</td>
-                            </tr>
-                            {/if}
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td>Total</td>
-                                <td class="text-right">{ rupiah(total) }</td>
-                            </tr>
-                        </tfoot>
-                    </table>
                 </div>
             </div>
-        </div>
-        <button on:click={()=>login()} class="text-center text-white btn btn-sm btn-warning w-100">Login</button>
-        {#if unit}
-        <a href="../book/{unit.slug}" class="text-center text-white btn btn-sm btn-primary mt-2 w-100">Back</a>
-        {/if}
+            <div class="bottom-fix">
+                <div class="d-flex gap-2 justify-content-center">
+                    <div>
+                        <button on:click={()=>login()} class="text-center text-white btn btn-sm btn-warning" style="width:150px">Login</button>
+                    </div>
+                    {#if unit}
+                    <div>
+                        <a href="../book/{unit.slug}" class="text-center text-white btn btn-sm btn-primary" style="width:150px">Back</a>
+                    </div>
+                    {/if}
+                </div>
+            </div>  
+        </main>
         <ModalLogin bind:isActive={isLogin} bind:user={user}/>
     {/if}
 {/if}

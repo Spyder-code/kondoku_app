@@ -90,13 +90,9 @@
     <!-- Fixed navbar -->
     <header class="header">
         <div class="row">
-            <div class="col-auto px-0">
-                <a href="{$url('/')}" class="btn menu-btn btn-link text-dark">
-                    <svg xmlns='http://www.w3.org/2000/svg' class="icon-size-24" viewBox='0 0 512 512'>
-                        <title>ionicons-v5-a</title>
-                        <polyline points='244 400 100 256 244 112' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:48px' />
-                        <line x1='120' y1='256' x2='412' y2='256' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:48px' />
-                    </svg>
+            <div class="col-auto px-3">
+                <a href="{$url('/')}" class="btn menu-btn btn-link text-dark ml-2" style="font-size:20pt;">
+                    <i class="bi bi-arrow-left"></i>
                 </a>
             </div>
             <div class="text-left col">
@@ -110,7 +106,7 @@
 
 
     <!-- Begin page content -->
-    <main class="flex-shrink-0">
+    <main class="bg-white" style="height: 100vh;">
         <div class="container text-center  mt-4">
             <div class="icon icon-100 bg-white text-white mb-4 text-center">
                 <img src="img/logo/fav-icon.png" alt="">
@@ -131,7 +127,7 @@
                 <div class="form-group floating-form-group">
                     <input type="text" bind:value={phone} class="form-control floating-input" placeholder="Phone">
                 </div>
-                <button on:click={()=>submit()} class="btn btn-block btn-success btn-sm"> <i class="bi bi-people"></i> SIGN UP</button>
+                <button on:click={()=>submit()} class="btn btn-block btn-success btn-sm mt-5"> <i class="bi bi-people"></i> SIGN UP</button>
             </div>
         </div>
     </main>
@@ -140,8 +136,30 @@
         <div class="container">
             <div class="row">
                 <div class="col text-center">
-                    <a href="{$url('/login')}" class="link">Login Account</a>
+                    <a href="{$url('/login')}" class="link">Already Have an Account?</a>
                 </div>
             </div>
         </div>
     </footer>
+
+    <style>
+        .floating-form-group .floating-input {
+        background: transparent;
+        border-radius: 0;
+        border-width: 0px;
+        border-bottom: 1px solid rgba(153, 153, 153, 0.3);
+        padding: 10px 0px;
+        line-height: 24px;
+        z-index: 2;
+        }
+
+        .floating-form-group .floating-input:focus, .floating-form-group .floating-input:focus:active {
+        border-bottom: 1px solid #FF97B5;
+        }
+
+        .floating-form-group .floating-input:focus + .floating-label, .floating-form-group .floating-input:focus:active + .floating-label {
+        color: #FF97B5;
+        top: 0;
+        font-size: 13px;
+        }
+    </style>

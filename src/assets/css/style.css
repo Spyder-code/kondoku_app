@@ -6,6 +6,10 @@
 .bg-theme{
     color: #CEA02F !important;
 }
+.btn-theme{
+  background-color: #CEA02F !important;
+  color: white;
+}
 
 body{
   width: 100%;
@@ -20,27 +24,93 @@ main{
   /* position: relative; */
   /* z-index: 99; */
   color: black;
-  /* padding-bottom: 60px; */
+  padding-top: 50px;
   margin-bottom: 60px;
 }
 
+input.tgl{
+  font-size: .8rem !important;
+  height: 35px;
+}
+
 header{
-  height: 260px;
+  height: 60px;
+  position: fixed;
+  z-index: 9;
+}
+
+.bottom-fix{
+  background-color: #fff;
+  position: fixed; 
+  bottom:0px; 
+  width:100%;
+  padding: 10px 0px;
 }
 
 .bg-gold{
   /* height: 290px;  */
   width:100%; 
-  background: linear-gradient(180deg, #CC9933 0%, #FFFF99 28.95%, #CC9933 43.68%, #FFFF99 65.12%, #d6ad4770 93.23%, #cc993300 100%)!important
+  background: linear-gradient(180deg, #e1ad46 0%, #ffcf70 28.95%, #f7bc45 43.68%, #f5af22 65.12%, #d9ae45 93.23%, #f7cb73 100%)!important;
+  /* background: linear-gradient(180deg, #CC9933 0%, #FFFF99 28.95%, #CC9933 43.68%, #FFFF99 65.12%, #d6ad4770 93.23%, #cc993300 100%)!important
+   */
+}
+
+.back{
+  position: absolute;
+  top: 0px;
+  background-color: #fff;
+  padding: 15px 0px;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.left-arrow{
+  position: absolute;
+  font-size: 1.6rem;
+  left: 10px;
+  top: 10px;
+}
+
+.lists{
+  font-size: .8rem;
+}
+
+.product-image-top{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 280px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.tag-images-count{
+  border-radius: 10px;
+  padding: 5px 20px;
+  position: relative;
+  top: 140px;
+  left: 10px;
+}
+
+.card-description{
+  position: relative;
+  top: -20px;
+  background-color: #fff;
+  border-top-right-radius:30px;
+  border-top-left-radius: 30px;
+  margin: 0px 10px;
 }
 
 .btn-icon{
+  color: #CC9933;
   border: none;
   outline: none;
   border-radius:100%;
-  width: 35px;
-  background: rgba(255, 255, 255, 0.5);
-  font-size: .8rem;
+  padding: 5px 9px;
+  background: rgb(255, 255, 255);
+  font-size: 1rem;
 }
 
 .btn-no-attr{
@@ -98,6 +168,7 @@ section{
   border-radius: 10px;
   object-fit: cover;
   object-position: bottom;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .apartment-icon{
@@ -109,7 +180,7 @@ section{
 
 span.title{
   color: #CEA02F;
-  font-size: .7rem;
+  font-size: .6rem;
 }
 
 .flash-sale{
@@ -176,24 +247,34 @@ footer{
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 60px;
+  height: 50px;
   z-index: 99999999;
-  background-image: url('assets/gold.png');
+  background-color: #fff;
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+  /* border-top:#CC9933 1px solid; */
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  /* background-image: url('assets/gold.png');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
 }
 
 .footer .app{
     position: relative;
-    top: -18px;
+    top: -23px;
     background-image: url('assets/gold.png');
     /* background-position-x: -8px;
     background-position-y: -20px; */
     background-position: center;
-    padding: 10px 15px;
+    padding: 7px 12px;
     border-radius: 100%;
     box-shadow: rgb(0, 0, 0) 0px 20px 30px -10px;
     color: white;
     font-size: 1.4rem !important;
+}
+
+.footer a{
+  width: 50px ;
+  font-size: .9rem;
 }

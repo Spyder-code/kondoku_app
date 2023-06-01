@@ -1,10 +1,11 @@
 <script>
   import { Swiper, SwiperSlide } from 'swiper/svelte';
-  import {params, url} from '@roxi/routify'
+  import {goto} from '@roxi/routify'
   import 'swiper/css';
   import 'swiper/css/autoplay';
   import axios from 'axios';
   import { Autoplay } from 'swiper';
+  import { search } from '../../store';
 
   let apartments = [];
   let endpoint = import.meta.env.VITE_ENDPOINT;
@@ -17,6 +18,22 @@
     const title = (name)=>{
       return name.toLocaleUpperCase();
     }
+
+    const apartmentFilter = (id,name)=>{
+        search.set({
+            duration:0,
+            apartment:id,
+            apartmentName:name,
+            bedroom:0,
+            typeAll:true,
+            typeStudio:0,
+            startDate:0,
+            endDate:0,
+            name:0,
+        });
+
+        $goto('/list');
+    }
 </script>
 
 {#if apartments.length > 0}
@@ -27,10 +44,10 @@
     autoplay={true}
     class="swiper-container">
       {#each apartments as apartment}
-        <SwiperSlide style="width:310px">
-          <div class="card card-background" style="background-image: url({app_url+apartment.image}); height: 200px;">
+        <SwiperSlide style="width:320px">
+          <button on:click={apartmentFilter(apartment.value,apartment.label)} class="card card-background" style="background-image: url({app_url+apartment.image}); height: 200px; width:320px">
             <p class="text-white" style="font-size:.7rem; text-shadow: rgba(29, 29, 29, 0.25) 4px 4px 4px;">{title(apartment.label)}</p>
-          </div>
+          </button>
         </SwiperSlide>
       {/each}
 </Swiper>

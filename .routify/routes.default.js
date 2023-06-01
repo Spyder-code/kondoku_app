@@ -231,6 +231,22 @@ export default {
     },
     {
       "meta": {},
+      "id": "_default_loading_svelte",
+      "_regex": {},
+      "_paramKeys": {},
+      "name": "loading",
+      "file": {
+        "path": "src/routes/loading.svelte",
+        "dir": "src/routes",
+        "base": "loading.svelte",
+        "ext": ".svelte",
+        "name": "loading"
+      },
+      "asyncModule": () => import('../src/routes/loading.svelte'),
+      "children": []
+    },
+    {
+      "meta": {},
       "id": "_default_login_svelte",
       "_regex": {},
       "_paramKeys": {},

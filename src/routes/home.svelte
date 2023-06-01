@@ -81,22 +81,22 @@
     
 </script>
 
-<main>
-  <header class="bg-gold">
-    <div class="d-flex gap-2 px-2 py-1">
-      <div class="btn-group w-100 mt-1">
-        <input type="text" name="" id="" class="form-control text-theme">
-        <button class="btn-search"><i class="fas fa-search"></i></button>
-      </div>
-      <button class="btn-icon mt-2">
-        <i class="fas fa-user"></i>
-      </button>
-      <button class="btn-icon mt-2">
-        <i class="fas fa-bell"></i>
-      </button>
+<header class="bg-gold">
+  <div class="d-flex gap-2 px-2 py-1">
+    <div class="btn-group w-100 mt-1">
+      <input type="text" bind:value={name} class="form-control text-theme">
+      <button class="btn-search" on:click={searchName}><i class="fas fa-search"></i></button>
     </div>
-    <Banner/>
-  </header>
+    <a href="/account" class="btn-icon mt-2">
+      <i class="bi bi-person"></i>
+    </a>
+    <button class="btn-icon mt-2">
+      <i class="bi bi-bell"></i>
+    </button>
+  </div>
+</header>
+<main>
+  <Banner/>
 
   <section>
     <div class="d-flex gap-2 flex-wrap justify-content-center">
@@ -183,30 +183,7 @@
   </section>
 </main>
 
-
-<footer class="">
-  <div class="footer px-4 py-2 d-flex justify-content-between">
-    <a href="" class="text-center text-white" style="text-shadow: 4px 4px 4px rgba(29, 29, 29, 0.25);">
-      <i class="fas fa-home"></i><br>
-      <span>Home</span>
-    </a>
-    <a href="" class="text-center text-dark" style="text-shadow: 4px 4px 4px rgba(29, 29, 29, 0.25);">
-      <i class="fas fa-building"></i><br>
-      <span>Unit</span>
-    </a>
-    <a href="" class="text-center text-dark app">
-      <i class="fas fa-calendar-days"></i><br>
-    </a>
-    <a href="" class="text-center text-dark" style="text-shadow: 4px 4px 4px rgba(29, 29, 29, 0.25);">
-      <i class="fas fa-bag-shopping"></i><br>
-      <span>Cart</span>
-    </a>
-    <a href="" class="text-center text-dark" style="text-shadow: 4px 4px 4px rgba(29, 29, 29, 0.25);">
-      <i class="fas fa-user"></i><br>
-      <span>Account</span>
-    </a>
-  </div>
-</footer>
+<BottomMenu/>
 
 <!-- <main class="flex-shrink-0">
     <Header/>

@@ -9,6 +9,7 @@
     import 'izitoast/dist/css/iziToast.css'
     import { goto } from '@roxi/routify'
     import { book } from "../../store";
+  import HeaderTitle from "../../lib/component/HeaderTitle.svelte";
 
     let co;
     let count = 1;
@@ -222,25 +223,12 @@
 <Layout>
     <!-- <Header/> -->
     {#if unit}
-    <header class="header">
-        <div class="row">
-            <div class="col-auto px-0">
-                <a href="../property/{unit.slug}" class="btn btn-link text-dark">
-                    <svg xmlns='http://www.w3.org/2000/svg' class="icon-size-24" viewBox='0 0 512 512'>
-                        <title>ionicons-v5-a</title>
-                        <polyline points='244 400 100 256 244 112' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:48px' />
-                        <line x1='120' y1='256' x2='412' y2='256' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:48px' />
-                    </svg>
-                </a>
+    <!-- <HeaderTitle title={unit.name} back="property/{unit.slug}"/> -->
+    <div style="height: 200px; ">
+        <div class="product-image-top" style="background-image: url('{unit.image}');">
+            <div >
+                <!-- <img src="{unit.image}" alt="" class="img-fluid"> -->
             </div>
-            <div class="text-left col align-self-center">
-                <h5>Book room</h5>
-            </div>
-        </div>
-    </header>
-    <div class="product-image-top">
-        <div class="background" style="background-image: url('{unit.image}');">
-            <img src="{unit.image}" alt="" style="display: none;">
         </div>
         <a href="/image/{unit.slug}" class="tag-images-count text-white bg-dark " >
             <i class="bi bi-image"></i>
@@ -248,98 +236,79 @@
         </a>
     </div>
     <!-- page content start -->
-    <div class="container-fluid top-30">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
-                        <p>{unit.name}</p>
-                    </div>
-                    <div class="col-auto">
-                        <p class="small text-secondary">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-size-16" viewBox="0 0 512 512">
-                                <title>ionicons-v5-l</title>
-                                <rect x="32" y="80" width="448" height="256" rx="16" ry="16" transform="translate(512 416) rotate(180)" style="fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px"></rect>
-                                <line x1="64" y1="384" x2="448" y2="384" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></line>
-                                <line x1="96" y1="432" x2="416" y2="432" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></line>
-                                <circle cx="256" cy="208" r="80" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></circle>
-                                <path d="M480,160a80,80,0,0,1-80-80" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path>
-                                <path d="M32,160a80,80,0,0,0,80-80" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path>
-                                <path d="M480,256a80,80,0,0,0-80,80" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path>
-                                <path d="M32,256a80,80,0,0,1,80,80" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path>
-                            </svg>
-                        </p>
+    <div class="card-description pb-5">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <p class="text-theme">{unit.name}</p>
+                </div>
+                <div class="col-auto">
+                    <p class="small text-secondary">
+                    </p>
 
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <p class="small vm">
-                            <span class=" text-secondary">{unit.large} m<sup>2</sup></span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-size-12 vm" viewBox="0 0 24 24">
-                                <path d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M0 0h24v24H0z" fill="none"></path>
-                                <path fill="#FFD500" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
-                            </svg>
-                            <span class=" text-secondary">| {unit.apartment.name}</span>
-                        </p>
-                    </div>
                 </div>
             </div>
-            <div class="card-body border-top border-color">
-                <div class="d-flex justify-content-center rounded" style="gap: 10px;">
-                    {#each unitRents as rent}
-                        {#if rent.price>0}
-                            {#if duration == rent.duration}
-                                <!-- svelte-ignore a11y-click-events-have-key-events -->
-                                <label for="duration-{rent.duration}" class="text-center label-radio label-active" on:click={changeDuration(rent.id,rent.duration,rent.price)}>
-                                    <input type="radio" name="duration" id="duration-{rent.duration}"> {rent.duration[0].toUpperCase() + rent.duration.substring(1)}
-                                </label>
-                            {:else}
-                                <!-- svelte-ignore a11y-click-events-have-key-events -->
-                                <label for="duration-{rent.duration}" class="text-center label-radio" on:click={changeDuration(rent.id,rent.duration,rent.price)}>
-                                    <input type="radio" name="duration" id="duration-{rent.duration}"> {rent.duration[0].toUpperCase() + rent.duration.substring(1)}
-                                </label>
-                            {/if}
-                        {/if}
-                        {:else}
-                        <p>Waiting...</p>
-                    {/each}
+            <div class="row">
+                <div class="col">
+                    <p class="small vm">
+                        <span class=" text-secondary">{unit.large} m<sup>2</sup></span>
+                        <span class="text-warning"><i class="bi bi-star-fill"></i></span>
+                        <span class=" text-secondary">| {unit.apartment.name}</span>
+                    </p>
                 </div>
-                <div class="d-flex justify-content-center mt-2" style="gap: 10px;">
-                    <div class="input-group" style="width: 40%;">
-                        <input type="number" class="form-control p-0 text-center" bind:value={count} min=1 max=10 readonly style="font-size:.8rem">
-                        <div class="input-group-append">
-                            <span class="input-group-text" style="font-size:.7rem">/{duration}</span>
-                        </div>
-                    </div>
-                    <div class="btn-group" style="width:20%">
-                        <button on:click={()=>{count++; check_out()}} class="btn btn-sm" style="font-size: 30pt;">+</button>
-                        <button on:click={()=>{count>1?count--:count=1; check_out()}} class="btn btn-sm pb-2" style="font-size: 30pt;">-</button>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-center mt-2" style="gap: 10px;">
-                    <div>
-                        <small>Checkin</small>
-                        <Flatpickr class="text-center" options={checkInOptions} bind:value={date_checkin} on:change={handleChangeCheckin} />
-                    </div>
-                    <div>
-                        <small>Checkout</small>
-                        <Flatpickr class="text-center" options={checkOutOptions} bind:value={date_checkout} />
-                    </div>
-                </div>
-            </div>
-            <div class="card-body border-top border-color">
-                <div class="d-flex justify-content-between">
-                    Book {count} {duration}(s) <span> {rupiah(price)}</span>
-                </div>
-                <!-- Button trigger modal -->
-                <button on:click={()=>checkout()} class="mt-4 btn btn-info btn-block btn-lg">
-                    Checkout
-                </button>
-                
             </div>
         </div>
+        <div class="card-body border-top border-color">
+            <div class="d-flex justify-content-center rounded" style="gap: 10px;">
+                {#each unitRents as rent}
+                    {#if rent.price>0}
+                        {#if duration == rent.duration}
+                            <!-- svelte-ignore a11y-click-events-have-key-events -->
+                            <label for="duration-{rent.duration}" class="text-center label-radio label-active" on:click={changeDuration(rent.id,rent.duration,rent.price)}>
+                                <input type="radio" name="duration" id="duration-{rent.duration}"> {rent.duration[0].toUpperCase() + rent.duration.substring(1)}
+                            </label>
+                        {:else}
+                            <!-- svelte-ignore a11y-click-events-have-key-events -->
+                            <label for="duration-{rent.duration}" class="text-center label-radio" on:click={changeDuration(rent.id,rent.duration,rent.price)}>
+                                <input type="radio" name="duration" id="duration-{rent.duration}"> {rent.duration[0].toUpperCase() + rent.duration.substring(1)}
+                            </label>
+                        {/if}
+                    {/if}
+                    {:else}
+                    <p>Waiting...</p>
+                {/each}
+            </div>
+            <div class="d-flex justify-content-center mt-2" style="gap: 10px;">
+                <div class="input-group border-0" style="width: 40%; height:35px">
+                    <input type="number" class="form-control text-center" bind:value={count} min=1 max=10 readonly style="font-size:.8rem">
+                    <span class="input-group-text border-0" style="font-size:.7rem">/{duration}</span>
+                </div>
+                <div class="btn-group" style="width:20%; height:35px">
+                    <button on:click={()=>{count++; check_out()}} class="no-attr">+</button>
+                    <button on:click={()=>{count>1?count--:count=1; check_out()}} class="no-attr pb-2">-</button>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mt-2" style="gap: 10px;">
+                <div>
+                    <small>Checkin</small>
+                    <Flatpickr class="text-center tgl" options={checkInOptions} bind:value={date_checkin} on:change={handleChangeCheckin} />
+                </div>
+                <div>
+                    <small>Checkout</small>
+                    <Flatpickr class="text-center tgl" options={checkOutOptions} bind:value={date_checkout} />
+                </div>
+            </div>
+        </div>
+        <div class="card-body border-top border-color">
+            <div class="d-flex justify-content-between">
+                Book {count} {duration}(s) <span class="text-theme"> {rupiah(price)}</span>
+            </div>
+            <!-- Button trigger modal -->
+            <button on:click={()=>checkout()} class="mt-4 btn btn-sm w-100 btn-theme">
+                Checkout
+            </button>
+            
+        </div>  
     </div>
     {:else}
         <Loading/>
@@ -362,5 +331,14 @@
     .label-active{
         background-color: #80D4FF;
         color: white;
+    }
+    button.no-attr{
+        width: 40px;
+        border: 1px solid gray;
+        background-color: transparent;
+        font-size: 1.3rem;
+    }
+    button.no-attr:hover{
+        background-color: #80D4FF;
     }
 </style>

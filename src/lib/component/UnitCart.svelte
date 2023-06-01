@@ -22,19 +22,8 @@
                 <div class="col-auto">
                     <div class="product-image-small">
                         <div class="background" style="background-image: url({app_url+unit.image});">
-                            <img src="{app_url+unit.image}" alt="{unit.name}" style="display: none;">
+                            <img src="{app_url+unit.image}" alt="{unit.name}" style="display:none">
                         </div>
-                        <a href="/image/{unit.slug}" class="tag-images-count text-white bg-dark">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-size-16 vm" viewBox="0 0 512 512">
-                                <title>ionicons-v5-e</title>
-                                <path d="M432,112V96a48.14,48.14,0,0,0-48-48H64A48.14,48.14,0,0,0,16,96V352a48.14,48.14,0,0,0,48,48H80" style="fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px"></path>
-                                <rect x="96" y="128" width="400" height="336" rx="45.99" ry="45.99" style="fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px"></rect>
-                                <ellipse cx="372.92" cy="219.64" rx="30.77" ry="30.55" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:32px"></ellipse>
-                                <path d="M342.15,372.17,255,285.78a30.93,30.93,0,0,0-42.18-1.21L96,387.64" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path>
-                                <path d="M265.23,464,383.82,346.27a31,31,0,0,1,41.46-1.87L496,402.91" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path>
-                            </svg>
-                            <span class="vm">{unit.unit_images.length}</span>
-                        </a>
                     </div>
                 </div>
                 <div class="col pl-0">
@@ -91,5 +80,43 @@
 <style>
     span{
         font-size: .7rem;
+    }
+    .product-card-small .product-image-small {
+    border-radius: 15px;
+    overflow: hidden;
+    height: 80px;
+    width: 80px;
+    display: block;
+    position: relative;
+    }
+
+    .product-card-small .product-image-small .tag-images-count {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    z-index: 1;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    }
+
+    .product-card-small .product-image-small .tag-images-count span {
+    margin-left: 5px;
+    }
+
+    .product-card-small .product-image-small .small-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 1;
+    }
+
+    .background {
+        background-position: center center;
+        background-size: cover;
+        height: 100%;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
     }
 </style>

@@ -38,7 +38,7 @@
 </script>
 
 {#each data as item}
-<button class="apartment-icon checkbox-lable" on:click={()=>apartmentFilter(item.value,item.label)}>
+<button class="apartment-icon checkbox-lable px-2" on:click={()=>apartmentFilter(item.value,item.label)}>
     <div>
       <img src="{app_url+item.image}" alt="{item.label}" class="img-fluid img-icon"><br>
       <span class="title">{title(item.label)}</span>

@@ -5,6 +5,7 @@
     import { Images } from "svelte-images";
     import {params, url} from '@roxi/routify'
     import Header from "../../lib/component/Header.svelte";
+  import HeaderTitle from "../../lib/component/HeaderTitle.svelte";
 
     let endpoint = import.meta.env.VITE_ENDPOINT;
     let images = [];
@@ -50,18 +51,14 @@
     }
   </style>
 
-<a class="back" href="#">
-    <i class="bi bi-arrow-left"></i>
-</a>
+<HeaderTitle title={unit_name} back="/property/{$params.name}"/>
 <Layout>
-    <Header/>
-    <div class="container">
-        <div class="row justify-content-center d-flex">
-            <div class="col-12">
-                <p>{unit_name}</p>
+    <div class="container-fluid mt-3 pb-3">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center" style="height: 450px; overflow:scroll">
                 <Images numCols={2} {images} gutter={2} />
             </div>
-            <div class="col-12">
+            <div class="col-12 pb-5">
                 <div class="container-fluid px-0 mt-4 text-center">
                     <a class="btn btn-sm btn-primary px-4 my-1 w-100" href="/property/{$params.name}">Detail Unit</a>
                     <a class="btn btn-sm btn-success px-4 my-1 w-100" href="/book/{$params.name}">Booking Unit</a>

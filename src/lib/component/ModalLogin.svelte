@@ -92,17 +92,15 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Login Form</h5>
-                <button on:click={()=>changeActive()} type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" on:click={()=>changeActive()} class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="login-box">
-                    <div class="form-group floating-form-group">
-                        <input bind:value={email} type="email" class="form-control floating-input" placeholder="Email">
+                    <div class="mb-3">
+                        <input bind:value={email} type="email" class="w-100 border-0 border-bottom form-control" placeholder="Email">
                     </div>
-                    <div class="form-group floating-form-group">
-                        <input bind:value={password} type="password" class="form-control floating-input" placeholder="Password">
+                    <div class="mb-3">
+                        <input bind:value={password} type="password" class="w-100 border-0 border-bottom form-control" placeholder="Password">
                     </div>
                     <!-- <div class="form-group my-4">
                         <a href="" class="link">Forget password?</a>

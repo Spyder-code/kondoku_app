@@ -1,7 +1,7 @@
 <script lang="ts">
 	import UnitCard from "../lib/component/UnitCard.svelte";
     import BottomMenu from "../lib/component/BottomMenu.svelte";
-	import Header from "../lib/component/Header.svelte";
+	import Unit from "../lib/component/Unit.svelte";
 	import Layout from "../lib/component/Layout.svelte";
     import {onMount} from "svelte";
 	import InfiniteScroll from "../lib/InfinityScroll.svelte";
@@ -11,6 +11,7 @@
     import axios from "axios";
     import moment from "moment";
     import { goto } from "@roxi/routify";
+    import HeaderTitle from "../lib/component/HeaderTitle.svelte";
 
     App.addListener('appUrlOpen', data => {
         alert('Back Press');
@@ -72,18 +73,17 @@
             endDate:null,
             name:null,
         });
-
+        fetchData();
         $goto('/list');
     }
 </script>
 
+<HeaderTitle title="Ready To Books"/>
 {#if loaded}
 <Layout>
-	<Header/>
-
-    <div class="container-fluid my-4">
+    <div class="my-4 mx-2" style="padding-bottom: 100px;">
         {#if $search.duration && !$search.name}
-            <div class="d-flex flex-wrap mb-2" style="gap: 5px;">
+            <div class="d-flex flex-wrap justify-content-between mb-2" style="gap: 5px;">
                 <span class="filter-item">Checkin: {moment($search.startDate).format('DD/MM/YYYY')}</span>
                 <span class="filter-item">Checkout: {moment($search.endDate).format('DD/MM/YYYY')}</span>
                 <span class="filter-item">Duration: {$search.duration}</span>
@@ -93,40 +93,41 @@
             </div>
         {/if}
         {#if $search.apartment && !$search.duration}
-            <div class="d-flex flex-wrap mb-2" style="gap: 5px;">
+            <div class="d-flex flex-wrap justify-content-between mb-2" style="gap: 5px;">
                 <span class="filter-item">{$search.apartmentName}</span>
                 <button type="button" on:click={()=>clearFilter()} class="clear-filter">Clear Filter</button>
             </div>
         {/if}
         {#if ($search.bedroom || $search.typeStudio) && !$search.duration}
-            <div class="d-flex flex-wrap mb-2" style="gap: 5px;">
+            <div class="d-flex flex-wrap justify-content-between mb-2" style="gap: 5px;">
                 <span class="filter-item">Type: {$search.typeStudio?'Studio':($search.bedroom>0?$search.bedroom+' BR':'All')}</span>
                 <button type="button" on:click={()=>clearFilter()} class="clear-filter">Clear Filter</button>
             </div>
         {/if}
-        <div class="row" style="overflow-x: scroll; max-height: 680px">
         {#if $search.name}
-            <div class="d-flex flex-wrap mb-2" style="gap: 5px;">
+            <div class="d-flex flex-wrap justify-content-between mb-2" style="gap: 5px;">
                 <span class="filter-item">Title : {$search.name}</span>
                 <button type="button" on:click={()=>clearFilter()} class="clear-filter">Clear Filter</button>
             </div>
         {/if}
-        <div class="row" style="overflow-x: scroll; max-height: 680px">
-            {#each data as unit}
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2 p-1">
-                    <UnitCard unit={unit} url={app_url} bind:duration={$search.duration}/>
-                </div>
-            {:else}
-                <div class="col-12">
-                    <img src="img/empty.png" alt="empty" class="img-fluid">
-                    <div class="text-center">
-                        <p class="text-center">Empty</p>
+        <div class="conatiner-fluid">
+            <div class="d-flex flex-wrap justify-content-center px-1" style="overflow-x: scroll; max-height: 680px; -ms-overflow-style: none;">
+                {#each data as unit}
+                    <div class="col-6">
+                        <Unit unit={unit}/>
                     </div>
-                </div>
-            {/each}
-            <InfiniteScroll
-                threshold={100}
-                on:loadMore={() => {page++; fetchData()}} />
+                {:else}
+                    <div class="col-12">
+                        <img src="img/empty.png" alt="empty" class="img-fluid">
+                        <div class="text-center">
+                            <p class="text-center">Empty</p>
+                        </div>
+                    </div>
+                {/each}
+                <InfiniteScroll
+                    threshold={100}
+                    on:loadMore={() => {page++; fetchData()}} />
+            </div>
         </div>
     </div>
 
@@ -138,11 +139,10 @@
 
 <style>
     .filter-item{
-        font-size: .6rem;
+        font-size: .7rem;
         padding: 2px 5px;
-        background-color: #80bdff;
         border-radius: 20px;
-        color:white;
+        color:#f4b924;
     }
     .clear-filter{
         font-size: .6rem;
@@ -151,6 +151,14 @@
         border-radius: 20px;
         color:white;
         border: none;
+        outline: none;
+    }
+    .row::-webkit-scrollbar {
+        display: none;
+    }
+    select:focus {
+        border: none;
+        background: transparent;
         outline: none;
     }
 </style>

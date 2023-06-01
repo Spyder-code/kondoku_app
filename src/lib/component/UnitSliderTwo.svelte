@@ -10,10 +10,7 @@
         return text.slice(0, count).toLocaleUpperCase() + (text.length > count ? "..." : "");
     }
     const rupiah = (number)=>{
-        return new Intl.NumberFormat("id-ID", {
-            style: "currency",
-            currency: "IDR"
-        }).format(number);
+        return number.toLocaleString('en-US');
     }
 </script>
 
@@ -45,8 +42,8 @@
                     <div class="price mt-3">
                       <div>
                         <span class="text-theme" style="font-size: .7rem;">Rp.</span>
-                        <span class="text-theme">100.000</span>
-                        <span class="text-theme" style="font-size: .7rem;">/Monthly</span>
+                        <span class="text-theme">{rupiah(unit.unit_rent[0].price)}</span>
+                        <span class="text-theme" style="font-size: .7rem;">/{unit.unit_rent[0].duration}</span>
                       </div>
                     </div>
                   </div>
