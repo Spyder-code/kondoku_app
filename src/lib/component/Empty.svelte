@@ -1,0 +1,1 @@
+<img src="/img/empty.png" alt="empty" class="img-fluid">

@@ -2,6 +2,7 @@
   import Unit from "./Unit.svelte";
   import InfiniteScroll from "../InfinityScroll.svelte";
   import {onMount} from "svelte";
+  import Empty from "./Empty.svelte";
 
   let url = import.meta.env.VITE_ENDPOINT;
   let app_url = import.meta.env.VITE_APP_URL;
@@ -15,6 +16,11 @@
     const response = await fetch(`${url}unit?page=${page}`);
     newBatch = await response.json();
   };
+
+  const loadMore = ()=>{
+    page+=1;
+    fetchData();
+  }
 
   onMount(() => {
       setTimeout(()=>{
@@ -36,14 +42,14 @@
     </div>
 {:else}
     <div class="col-12">
-        <img src="img/empty.png" alt="empty" class="img-fluid">
+        <Empty/>
         <div class="text-center">
             <p class="text-center">Empty</p>
         </div>
     </div>
 {/each}
 {#if max_page>=page}
-  <a href="#" class="text-center">Load More</a>
+  <button type="button" class="btn btn-theme btn-sm text-center mt-2" on:click={loadMore}>Load More</button>
 {/if}
 <InfiniteScroll 
   threshold={100} 

@@ -10,6 +10,7 @@
     import Apartment from "../lib/component/Apartment.svelte";
     import HeaderTitle from "../lib/component/HeaderTitle.svelte";
     import UnitSliderTwo from "../lib/component/UnitSliderTwo.svelte";
+    import UnitList from "../lib/component/UnitList.svelte";
 
     export let isActiveModal;
     let units1 = [];
@@ -187,6 +188,11 @@
             <span class="fw-bold">Weekly Deals</span>
             <UnitSliderTwo units={units1}/>
         {/if}
+    </div>
+</section>
+<section class="container-fluid" style="padding-bottom: 60px;">
+    <div class="row">
+        <UnitList max_page={5}/>
     </div>
 </section>
 <BottomMenu/>

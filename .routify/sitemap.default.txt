@@ -1,8 +1,10 @@
 /
 /account
 /apartment
+/bills
 /book
 /book/confirm
+/booking
 /cart
 /filter
 /home
@@ -12,6 +14,8 @@
 /list
 /loading
 /login
+/order
+/order/create
 /pay
 /property
 /register

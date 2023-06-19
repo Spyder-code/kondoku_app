@@ -12,6 +12,7 @@
     import moment from "moment";
     import { goto } from "@roxi/routify";
     import HeaderTitle from "../lib/component/HeaderTitle.svelte";
+    import Empty from "../lib/component/Empty.svelte";
 
     App.addListener('appUrlOpen', data => {
         alert('Back Press');
@@ -111,14 +112,14 @@
             </div>
         {/if}
         <div class="conatiner-fluid">
-            <div class="d-flex flex-wrap justify-content-center px-1" style="overflow-x: scroll; max-height: 680px; -ms-overflow-style: none;">
+            <div class="row" style="overflow-x: scroll; max-height: 680px; -ms-overflow-style: none;">
                 {#each data as unit}
-                    <div class="col-6">
+                    <div class="col-6 col-sm-4 col-md-3 col-lg-2 p-1 d-flex justify-content-center">
                         <Unit unit={unit}/>
                     </div>
                 {:else}
                     <div class="col-12">
-                        <img src="img/empty.png" alt="empty" class="img-fluid">
+                        <Empty/>
                         <div class="text-center">
                             <p class="text-center">Empty</p>
                         </div>

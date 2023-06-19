@@ -14,18 +14,19 @@
 body{
   width: 100%;
   height: 100%;
-  background-color: blanchedalmond;
+  /* background-color: blanchedalmond; */
+  background: linear-gradient(223.79deg, #cc9933 -12.62%, rgba(255, 255, 149, 0.661) -1.11%, #CC9933 13.57%, rgba(255, 255, 153, 0.2) 36.09%, rgba(214, 173, 71, 0.1) 53.19%, #cc993391 82.42%), url('assets/bg.png') no-repeat;
+  background-size: cover;
   font-family: 'Nunito Sans', sans-serif;
 }
 
 main{
-  background-color: #FFF9F3;
+  /* background-color: #FFF9F3; */
   /* height: 100vh; */
   /* position: relative; */
   /* z-index: 99; */
-  color: black;
-  padding-top: 50px;
-  margin-bottom: 60px;
+  padding-top: 35px;
+  padding-bottom: 60px;
 }
 
 input.tgl{

@@ -49,6 +49,22 @@ export default {
     },
     {
       "meta": {},
+      "id": "_default_bills_svelte",
+      "_regex": {},
+      "_paramKeys": {},
+      "name": "bills",
+      "file": {
+        "path": "src/routes/bills.svelte",
+        "dir": "src/routes",
+        "base": "bills.svelte",
+        "ext": ".svelte",
+        "name": "bills"
+      },
+      "asyncModule": () => import('../src/routes/bills.svelte'),
+      "children": []
+    },
+    {
+      "meta": {},
       "id": "_default_book",
       "_regex": {},
       "_paramKeys": {},
@@ -94,6 +110,41 @@ export default {
             "name": "confirm"
           },
           "asyncModule": () => import('../src/routes/book/confirm.svelte'),
+          "children": []
+        }
+      ]
+    },
+    {
+      "meta": {},
+      "id": "_default_booking",
+      "_regex": {},
+      "_paramKeys": {},
+      "name": "booking",
+      "module": false,
+      "file": {
+        "path": "src/routes/booking",
+        "dir": "src/routes",
+        "base": "booking",
+        "ext": "",
+        "name": "booking"
+      },
+      "children": [
+        {
+          "meta": {
+            "dynamic": true
+          },
+          "id": "_default_booking__id__svelte",
+          "_regex": {},
+          "_paramKeys": {},
+          "name": "[id]",
+          "file": {
+            "path": "src/routes/booking/[id].svelte",
+            "dir": "src/routes/booking",
+            "base": "[id].svelte",
+            "ext": ".svelte",
+            "name": "[id]"
+          },
+          "asyncModule": () => import('../src/routes/booking/[id].svelte'),
           "children": []
         }
       ]
@@ -260,6 +311,39 @@ export default {
       },
       "asyncModule": () => import('../src/routes/login.svelte'),
       "children": []
+    },
+    {
+      "meta": {},
+      "id": "_default_order",
+      "_regex": {},
+      "_paramKeys": {},
+      "name": "order",
+      "module": false,
+      "file": {
+        "path": "src/routes/order",
+        "dir": "src/routes",
+        "base": "order",
+        "ext": "",
+        "name": "order"
+      },
+      "children": [
+        {
+          "meta": {},
+          "id": "_default_order_create_svelte",
+          "_regex": {},
+          "_paramKeys": {},
+          "name": "create",
+          "file": {
+            "path": "src/routes/order/create.svelte",
+            "dir": "src/routes/order",
+            "base": "create.svelte",
+            "ext": ".svelte",
+            "name": "create"
+          },
+          "asyncModule": () => import('../src/routes/order/create.svelte'),
+          "children": []
+        }
+      ]
     },
     {
       "meta": {},

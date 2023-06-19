@@ -3,7 +3,8 @@
     import axios from "axios";
     import iziToast from 'izitoast'
     import { Preferences } from '@capacitor/preferences';
-    import 'izitoast/dist/css/iziToast.css'
+    import 'izitoast/dist/css/iziToast.css';
+    import { mobile_id } from '../store';
     
     let endpoint = import.meta.env.VITE_ENDPOINT;
     let email = '';
@@ -37,16 +38,19 @@
     }
 
     async function createUser(id,name,email,phone,avatar) {
-        const ret = await Preferences.set({ 
-            key: 'user',
-            value: JSON.stringify({
-                id: id,
-                name: name,
-                email: email,
-                phone: phone,
-                avatar: avatar,
+        axios.put(endpoint+'user/'+id,{mobile_id_penyewa:$mobile_id})
+            .then(async (res) => {
+                await Preferences.set({ 
+                    key: 'user',
+                    value: JSON.stringify({
+                        id: id,
+                        name: name,
+                        email: email,
+                        phone: phone,
+                        avatar: avatar,
+                    })
+                });
             })
-        });
     }
 
     const validation = ()=>{

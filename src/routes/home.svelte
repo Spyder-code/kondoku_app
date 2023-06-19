@@ -118,7 +118,7 @@
   </section>
 
   <section class="container-fluid">
-    <div class="row" style="overflow-x: scroll; max-height: 680px">
+    <div class="row">
       <UnitList max_page={5}/>
     </div>
   </section>

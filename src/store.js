@@ -20,4 +20,6 @@ export const search = writable({
     startDate:null,
     endDate:null,
     name:null,
-})
+});
+
+export const mobile_id = writable(null);

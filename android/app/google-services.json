@@ -1,0 +1,97 @@
+{
+  "project_info": {
+    "project_number": "507439952276",
+    "project_id": "kondoku-app",
+    "storage_bucket": "kondoku-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507439952276:android:8bc391164b9461fdad1f81",
+        "android_client_info": {
+          "package_name": "com.kondoku.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "507439952276-obomckofh1opo36no1p52fm7bmip15pa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrTeizyxBVc64ST_YYAFk5QJlRBlKs2oQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "507439952276-obomckofh1opo36no1p52fm7bmip15pa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507439952276:android:c9fba28a9e934b39ad1f81",
+        "android_client_info": {
+          "package_name": "com.kondoku.hk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "507439952276-obomckofh1opo36no1p52fm7bmip15pa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrTeizyxBVc64ST_YYAFk5QJlRBlKs2oQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "507439952276-obomckofh1opo36no1p52fm7bmip15pa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507439952276:android:f539a55a4188c03ead1f81",
+        "android_client_info": {
+          "package_name": "com.kondoku.owner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "507439952276-obomckofh1opo36no1p52fm7bmip15pa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrTeizyxBVc64ST_YYAFk5QJlRBlKs2oQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "507439952276-obomckofh1opo36no1p52fm7bmip15pa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

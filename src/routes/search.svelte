@@ -11,10 +11,8 @@
     import axios from "axios";
     import moment from "moment";
     import { goto } from "@roxi/routify";
+    import Empty from "../lib/component/Empty.svelte";
 
-    App.addListener('appUrlOpen', data => {
-        alert('Back Press');
-    });
     
     let url = import.meta.env.VITE_ENDPOINT;
     let app_url = import.meta.env.VITE_APP_URL;
@@ -96,7 +94,7 @@
                     <UnitCard unit={unit} url={app_url} bind:duration={$search.duration}/>
                 </div>
             {:else}
-                <img src="img/empty.png" alt="empty" class="img-fluid">
+                <Empty/>
                 <p class="text-center">Empty</p>
             {/each}
             <InfiniteScroll
