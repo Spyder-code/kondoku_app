@@ -3,8 +3,7 @@
 export default {
   "meta": {},
   "id": "_default",
-  "_regex": {},
-  "_paramKeys": {},
+  "name": "",
   "file": {
     "path": "src/routes",
     "dir": "src",
@@ -18,8 +17,6 @@ export default {
     {
       "meta": {},
       "id": "_default_account_svelte",
-      "_regex": {},
-      "_paramKeys": {},
       "name": "account",
       "file": {
         "path": "src/routes/account.svelte",
@@ -34,8 +31,6 @@ export default {
     {
       "meta": {},
       "id": "_default_apartment_svelte",
-      "_regex": {},
-      "_paramKeys": {},
       "name": "apartment",
       "file": {
         "path": "src/routes/apartment.svelte",
@@ -50,8 +45,6 @@ export default {
     {
       "meta": {},
       "id": "_default_bills_svelte",
-      "_regex": {},
-      "_paramKeys": {},
       "name": "bills",
       "file": {
         "path": "src/routes/bills.svelte",
@@ -66,8 +59,6 @@ export default {
     {
       "meta": {},
       "id": "_default_book",
-      "_regex": {},
-      "_paramKeys": {},
       "name": "book",
       "module": false,
       "file": {
@@ -80,11 +71,10 @@ export default {
       "children": [
         {
           "meta": {
-            "dynamic": true
+            "dynamic": true,
+            "order": false
           },
           "id": "_default_book__name__svelte",
-          "_regex": {},
-          "_paramKeys": {},
           "name": "[name]",
           "file": {
             "path": "src/routes/book/[name].svelte",
@@ -99,8 +89,6 @@ export default {
         {
           "meta": {},
           "id": "_default_book_confirm_svelte",
-          "_regex": {},
-          "_paramKeys": {},
           "name": "confirm",
           "file": {
             "path": "src/routes/book/confirm.svelte",
@@ -117,8 +105,6 @@ export default {
     {
       "meta": {},
       "id": "_default_booking",
-      "_regex": {},
-      "_paramKeys": {},
       "name": "booking",
       "module": false,
       "file": {
@@ -131,11 +117,10 @@ export default {
       "children": [
         {
           "meta": {
-            "dynamic": true
+            "dynamic": true,
+            "order": false
           },
           "id": "_default_booking__id__svelte",
-          "_regex": {},
-          "_paramKeys": {},
           "name": "[id]",
           "file": {
             "path": "src/routes/booking/[id].svelte",
@@ -152,8 +137,6 @@ export default {
     {
       "meta": {},
       "id": "_default_cart_svelte",
-      "_regex": {},
-      "_paramKeys": {},
       "name": "cart",
       "file": {
         "path": "src/routes/cart.svelte",
@@ -168,8 +151,6 @@ export default {
     {
       "meta": {},
       "id": "_default_filter_svelte",
-      "_regex": {},
-      "_paramKeys": {},
       "name": "filter",
       "file": {
         "path": "src/routes/filter.svelte",
@@ -184,8 +165,6 @@ export default {
     {
       "meta": {},
       "id": "_default_home_svelte",
-      "_regex": {},
-      "_paramKeys": {},
       "name": "home",
       "file": {
         "path": "src/routes/home.svelte",
@@ -200,8 +179,6 @@ export default {
     {
       "meta": {},
       "id": "_default_image",
-      "_regex": {},
-      "_paramKeys": {},
       "name": "image",
       "module": false,
       "file": {
@@ -214,11 +191,10 @@ export default {
       "children": [
         {
           "meta": {
-            "dynamic": true
+            "dynamic": true,
+            "order": false
           },
           "id": "_default_image__name__svelte",
-          "_regex": {},
-          "_paramKeys": {},
           "name": "[name]",
           "file": {
             "path": "src/routes/image/[name].svelte",
@@ -235,8 +211,6 @@ export default {
     {
       "meta": {},
       "id": "_default_images_svelte",
-      "_regex": {},
-      "_paramKeys": {},
       "name": "images",
       "file": {
         "path": "src/routes/images.svelte",
@@ -249,10 +223,10 @@ export default {
       "children": []
     },
     {
-      "meta": {},
+      "meta": {
+        "isDefault": true
+      },
       "id": "_default_index_svelte",
-      "_regex": {},
-      "_paramKeys": {},
       "name": "index",
       "file": {
         "path": "src/routes/index.svelte",
@@ -267,8 +241,6 @@ export default {
     {
       "meta": {},
       "id": "_default_list_svelte",
-      "_regex": {},
-      "_paramKeys": {},
       "name": "list",
       "file": {
         "path": "src/routes/list.svelte",
@@ -283,8 +255,6 @@ export default {
     {
       "meta": {},
       "id": "_default_loading_svelte",
-      "_regex": {},
-      "_paramKeys": {},
       "name": "loading",
       "file": {
         "path": "src/routes/loading.svelte",
@@ -299,8 +269,6 @@ export default {
     {
       "meta": {},
       "id": "_default_login_svelte",
-      "_regex": {},
-      "_paramKeys": {},
       "name": "login",
       "file": {
         "path": "src/routes/login.svelte",
@@ -315,8 +283,6 @@ export default {
     {
       "meta": {},
       "id": "_default_order",
-      "_regex": {},
-      "_paramKeys": {},
       "name": "order",
       "module": false,
       "file": {
@@ -330,8 +296,6 @@ export default {
         {
           "meta": {},
           "id": "_default_order_create_svelte",
-          "_regex": {},
-          "_paramKeys": {},
           "name": "create",
           "file": {
             "path": "src/routes/order/create.svelte",
@@ -348,8 +312,6 @@ export default {
     {
       "meta": {},
       "id": "_default_pay_svelte",
-      "_regex": {},
-      "_paramKeys": {},
       "name": "pay",
       "file": {
         "path": "src/routes/pay.svelte",
@@ -364,8 +326,6 @@ export default {
     {
       "meta": {},
       "id": "_default_property",
-      "_regex": {},
-      "_paramKeys": {},
       "name": "property",
       "module": false,
       "file": {
@@ -378,11 +338,10 @@ export default {
       "children": [
         {
           "meta": {
-            "dynamic": true
+            "dynamic": true,
+            "order": false
           },
           "id": "_default_property__name__svelte",
-          "_regex": {},
-          "_paramKeys": {},
           "name": "[name]",
           "file": {
             "path": "src/routes/property/[name].svelte",
@@ -399,8 +358,6 @@ export default {
     {
       "meta": {},
       "id": "_default_register_svelte",
-      "_regex": {},
-      "_paramKeys": {},
       "name": "register",
       "file": {
         "path": "src/routes/register.svelte",
@@ -415,8 +372,6 @@ export default {
     {
       "meta": {},
       "id": "_default_search_svelte",
-      "_regex": {},
-      "_paramKeys": {},
       "name": "search",
       "file": {
         "path": "src/routes/search.svelte",
@@ -431,10 +386,9 @@ export default {
     {
       "meta": {
         "dynamic": true,
-        "dynamicSpread": true
+        "dynamicSpread": true,
+        "order": false
       },
-      "_regex": {},
-      "_paramKeys": {},
       "name": "[...404]",
       "file": {
         "path": ".routify/components/[...404].svelte",
