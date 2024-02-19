@@ -10,7 +10,8 @@
     import { goto, url } from "@roxi/routify";
     import Banner from '../lib/component/Banner.svelte';
     import ApartmentSlider from '../lib/component/ApartmentSlider.svelte';
-    import UnitList from '..//lib/component/UnitList.svelte';
+    import UnitList from '../lib/component/UnitList.svelte';
+    import Refresher from '../lib/component/Refresher.svelte';
 
     let endpoint = import.meta.env.VITE_ENDPOINT;
     let app_url = import.meta.env.VITE_APP_URL;
@@ -81,108 +82,110 @@
     
 </script>
 
-<header class="bg-gold">
-  <div class="d-flex gap-2 px-2 py-1">
-    <div class="btn-group w-100 mt-1">
-      <input type="text" bind:value={name} class="form-control text-theme">
-      <button class="btn-search" on:click={searchName}><i class="fas fa-search"></i></button>
-    </div>
-    <a href="/account" class="btn-icon mt-2">
-      <i class="bi bi-person"></i>
-    </a>
-    <button class="btn-icon mt-2">
-      <i class="bi bi-bell"></i>
-    </button>
-  </div>
-</header>
-<main>
-  <Banner/>
-
-  <section>
-    <div class="d-flex gap-2 flex-wrap justify-content-center">
-      <Apartment/>
-    </div>
-  </section>
-
-  <section class="flash-sale">
-    <span class="fw-bold">Flash Rent</span>
-    <div style="height: 275px;">
-      <UnitSliderTwo units={units1}/>
-    </div>
-  </section>
-
-  <section>
-    <div class="mt-1">
-      <ApartmentSlider/>
-    </div>
-  </section>
-
-  <section class="container-fluid">
-    <div class="row">
-      <UnitList max_page={5}/>
-    </div>
-  </section>
-
-  <section class="info-footer">
-    <div class="px-3">
-      <img src="https://www.kondoku.co.id/frontend/img/logo/Logo Kondoku one click.png" alt="LOGO" class="img-fluid" style="height: 60px;">
-      <div class="mt-3">
-        <p style="font-size: .8rem;">Jalan Pakuwon Indah, Tokan C5, Waterplace Residence, Surabaya Jawa Timur, 60216.</p>
+<Refresher>
+  <header class="bg-gold">
+    <div class="d-flex gap-2 px-2 py-1">
+      <div class="btn-group w-100 mt-1">
+        <input type="text" bind:value={name} class="form-control text-theme">
+        <button class="btn-search" on:click={searchName}><i class="fas fa-search"></i></button>
       </div>
-      <div class="d-flex gap-3">
-        <a class="text-white" style="font-size: 1.2rem;">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a class="text-white" style="font-size: 1.2rem;">
-          <i class="fab fa-whatsapp"></i>
-        </a>
-        <a class="text-white" style="font-size: 1.2rem;">
-          <i class="fab fa-facebook"></i>
-        </a>
-        <a class="text-white" style="font-size: 1.2rem;">
-          <i class="fab fa-twitter"></i>
-        </a>
-      </div>
-      <div class="card px-3 mt-3" style="background-color: rgb(255, 255, 255, .3);">
-        <table class="tables" style="font-size: .8rem; color: azure;">
-          <tr>
-            <td class="py-2"><i class="bi bi-telephone"></i> (031) 7393240</td>
-            <td style="text-align: right;">
-              <div style="width:100px; margin-left:50px" class="btn-no-attr text-center">
-                <a href="tel:0317393240" class="text-white">Call</a>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-2"><i class="fab fa-whatsapp"></i> 0812 3111 1179</td>
-            <td style="text-align: right;">
-              <div style="width:100px; margin-left:50px" class="btn-no-attr text-center">
-                <a href="https://wa.me/6281231111179" class="text-white">Call</a>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-2"><i class="bi bi-envelope"></i> cs@kondoku.co.id</td>
-            <td style="text-align: right;">
-              <div style="width:100px; margin-left:50px" class="btn-no-attr text-center">
-                <a href="mailto:cs@kondoku.co.id" class="text-white">Email</a>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-2"><i class="bi bi-map"></i> Maps</td>
-            <td style="text-align: right;">
-              <div style="width:100px; margin-left:50px" class="btn-no-attr text-center">
-                <a href="https://goo.gl/maps/zrDn3peFZe5FmAWo8" class="text-white">Open</a>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
+      <a href="/account" class="btn-icon mt-2">
+        <i class="bi bi-person"></i>
+      </a>
+      <button class="btn-icon mt-2">
+        <i class="bi bi-bell"></i>
+      </button>
     </div>
-  </section>
-</main>
-
+  </header>
+  <main>
+    <Banner/>
+  
+    <section>
+      <div class="d-flex gap-2 flex-wrap justify-content-center">
+        <Apartment/>
+      </div>
+    </section>
+  
+    <section class="flash-sale">
+      <span class="fw-bold">Flash Rent</span>
+      <div style="height: 275px;">
+        <UnitSliderTwo units={units1}/>
+      </div>
+    </section>
+  
+    <section>
+      <div class="mt-1">
+        <ApartmentSlider/>
+      </div>
+    </section>
+  
+    <section class="container-fluid">
+      <div class="row">
+        <UnitList max_page={5}/>
+      </div>
+    </section>
+  
+    <section class="info-footer">
+      <div class="px-3">
+        <img src="https://www.kondoku.co.id/frontend/img/logo/Logo Kondoku one click.png" alt="LOGO" class="img-fluid" style="height: 60px;">
+        <div class="mt-3">
+          <p style="font-size: .8rem;">Jalan Pakuwon Indah, Tokan C5, Waterplace Residence, Surabaya Jawa Timur, 60216.</p>
+        </div>
+        <div class="d-flex gap-3">
+          <a class="text-white" style="font-size: 1.2rem;">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a class="text-white" style="font-size: 1.2rem;">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a class="text-white" style="font-size: 1.2rem;">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a class="text-white" style="font-size: 1.2rem;">
+            <i class="fab fa-twitter"></i>
+          </a>
+        </div>
+        <div class="card px-3 mt-3" style="background-color: rgb(255, 255, 255, .3);">
+          <table class="tables" style="font-size: .8rem; color: azure;">
+            <tr>
+              <td class="py-2"><i class="bi bi-telephone"></i> (031) 7393240</td>
+              <td style="text-align: right;">
+                <div style="width:100px; margin-left:50px" class="btn-no-attr text-center">
+                  <a href="tel:0317393240" class="text-white">Call</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-2"><i class="fab fa-whatsapp"></i> 0812 3111 1179</td>
+              <td style="text-align: right;">
+                <div style="width:100px; margin-left:50px" class="btn-no-attr text-center">
+                  <a href="https://wa.me/6281231111179" class="text-white">Call</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-2"><i class="bi bi-envelope"></i> cs@kondoku.co.id</td>
+              <td style="text-align: right;">
+                <div style="width:100px; margin-left:50px" class="btn-no-attr text-center">
+                  <a href="mailto:cs@kondoku.co.id" class="text-white">Email</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-2"><i class="bi bi-map"></i> Maps</td>
+              <td style="text-align: right;">
+                <div style="width:100px; margin-left:50px" class="btn-no-attr text-center">
+                  <a href="https://goo.gl/maps/zrDn3peFZe5FmAWo8" class="text-white">Open</a>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+</Refresher>
 <BottomMenu/>
 
 <!-- <main class="flex-shrink-0">

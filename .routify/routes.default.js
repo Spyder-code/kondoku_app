@@ -387,7 +387,8 @@ export default {
       "meta": {
         "dynamic": true,
         "dynamicSpread": true,
-        "order": false
+        "order": false,
+        "inline": false
       },
       "name": "[...404]",
       "file": {

@@ -25,7 +25,20 @@
                     createUser(res.data.data.id,res.data.data.avatar);
                     $goto('/home')
                 }
-            })
+            }).catch(error => {
+                if (error.response) {
+                    let err = error.response.data.errors;
+                    err.forEach((element, index, array) => {
+                        iziToast.show({
+                            title: 'Info!',
+                            theme: 'light',
+                            color: 'red',
+                            position: 'topRight',
+                            message: element
+                        });
+                    });
+                }
+            });
         }
     }
 
@@ -82,6 +95,18 @@
                 message: 'Phone is required!'
             });
             return false;
+        }
+
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if(!regex.test(email)){
+            iziToast.show({
+                title: 'Info!',
+                theme: 'light',
+                color: 'red',
+                position: 'topRight',
+                message: 'Email field must be email address!'
+            });
+            return false
         }
         
         return true;

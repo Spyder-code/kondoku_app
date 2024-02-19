@@ -79,9 +79,9 @@
     }
 </script>
 
-<HeaderTitle title="Ready To Books"/>
 {#if loaded}
 <Layout>
+    <HeaderTitle title="Ready To Books"/>
     <div class="my-4 mx-2" style="padding-bottom: 100px;">
         {#if $search.duration && !$search.name}
             <div class="d-flex flex-wrap justify-content-between mb-2" style="gap: 5px;">
@@ -132,8 +132,8 @@
         </div>
     </div>
 
-	<BottomMenu/>
 </Layout>
+<BottomMenu/>
 {:else}
     <Loading/>
 {/if}
